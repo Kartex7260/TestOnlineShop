@@ -9,9 +9,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.Feedback
 import kanti.testonlineshop.ui.theme.element
+import kanti.testonlineshop.ui.theme.elementOrange
 import kanti.testonlineshop.ui.theme.textBlack
 
 @Composable
@@ -34,13 +32,10 @@ fun RatingTag(
     modifier = modifier,
     verticalAlignment = Alignment.CenterVertically
 ) {
-    val ratingColor by remember {
-        mutableStateOf(Color(0xFFF9A249))
-    }
     Image(
         painter = painterResource(id = R.drawable.star),
         contentDescription = null,
-        colorFilter = ColorFilter.tint(ratingColor),
+        colorFilter = ColorFilter.tint(MaterialTheme.colors.elementOrange),
         contentScale = ContentScale.None,
         modifier = Modifier.size(16.dp)
     )
@@ -49,7 +44,7 @@ fun RatingTag(
         text = feedback.rating.toString(),
         style = MaterialTheme.typography.element,
         modifier = Modifier.padding(bottom = 2.dp),
-        color = ratingColor
+        color = MaterialTheme.colors.elementOrange
     )
     Spacer(modifier = Modifier.width(2.dp))
     Text(
