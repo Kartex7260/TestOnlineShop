@@ -62,9 +62,10 @@ fun ProductCard(
         Box(
             contentAlignment = Alignment.BottomCenter
         ) {
+            val pagerState = rememberPagerState { images.size }
             HorizontalPager(
                 modifier = Modifier.height(144.dp),
-                state = rememberPagerState { images.size }
+                state = pagerState
             ) {
                 Image(
                     modifier = Modifier.fillMaxWidth(),
@@ -73,6 +74,10 @@ fun ProductCard(
                     contentScale = ContentScale.FillWidth
                 )
             }
+            PagingIndicator(
+                count = images.size,
+                select = pagerState.currentPage
+            )
         }
 
         // PAST PRICE
