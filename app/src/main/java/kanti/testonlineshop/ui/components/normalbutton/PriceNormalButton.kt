@@ -1,4 +1,4 @@
-package kanti.testonlineshop.ui.components
+package kanti.testonlineshop.ui.components.normalbutton
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
