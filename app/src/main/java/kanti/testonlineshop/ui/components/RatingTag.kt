@@ -21,14 +21,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kanti.testonlineshop.R
+import kanti.testonlineshop.data.model.Feedback
 import kanti.testonlineshop.ui.theme.element
 import kanti.testonlineshop.ui.theme.textBlack
 
 @Composable
 fun RatingTag(
     modifier: Modifier = Modifier,
-    rating: Float = 0.0f,
-    reviews: Int = 0
+    feedback: Feedback,
+    normalColor: Color = MaterialTheme.colors.textBlack
 ) = Row(
     modifier = modifier,
     verticalAlignment = Alignment.CenterVertically
@@ -45,17 +46,17 @@ fun RatingTag(
     )
     Spacer(modifier = Modifier.width(2.dp))
     Text(
-        text = rating.toString(),
+        text = feedback.rating.toString(),
         style = MaterialTheme.typography.element,
         modifier = Modifier.padding(bottom = 2.dp),
         color = ratingColor
     )
     Spacer(modifier = Modifier.width(2.dp))
     Text(
-        text = "($reviews)",
+        text = "(${feedback.count})",
         style = MaterialTheme.typography.element,
         modifier = Modifier.padding(bottom = 2.dp),
-        color = MaterialTheme.colors.textBlack
+        color = normalColor
     )
 }
 
@@ -63,7 +64,9 @@ fun RatingTag(
 @Composable
 private fun PreviewRatingTag() {
     RatingTag(
-        rating = 4.3f,
-        reviews = 4
+        feedback = Feedback(
+            count = 4,
+            rating = 4.3f
+        )
     )
 }
