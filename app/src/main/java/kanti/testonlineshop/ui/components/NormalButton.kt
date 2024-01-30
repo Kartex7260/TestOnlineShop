@@ -18,7 +18,7 @@ import kanti.testonlineshop.ui.theme.button2
 import kanti.testonlineshop.ui.theme.textWhite
 
 @Composable
-fun ButtonNormal(
+fun NormalButton(
     modifier: Modifier = Modifier,
     text: String = "",
     enabled: Boolean = true,
@@ -47,7 +47,7 @@ fun ButtonNormal(
 private fun PreviewButtonNormal(
     @PreviewParameter(PreviewButtonNormalEnabled::class) enabled: Boolean
 ) {
-    ButtonNormal(
+    NormalButton(
         text = "It preview text",
         enabled = enabled
     )
