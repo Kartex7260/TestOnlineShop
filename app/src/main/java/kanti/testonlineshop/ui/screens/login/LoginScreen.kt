@@ -18,11 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.components.edittext.EditText
 import kanti.testonlineshop.ui.components.edittext.PhoneEditText
 import kanti.testonlineshop.ui.components.normalbutton.NormalButton
 import kanti.testonlineshop.ui.screens.login.viewmodel.LoginViewModel
+import kanti.testonlineshop.ui.screens.login.viewmodel.LoginViewModelImpl
 import kanti.testonlineshop.ui.theme.caption1
 import kanti.testonlineshop.ui.theme.link
 import kanti.testonlineshop.ui.theme.textBlack
@@ -32,7 +34,7 @@ import kanti.testonlineshop.ui.theme.title1
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel = LoginViewModel
+    viewModel: LoginViewModel = hiltViewModel<LoginViewModelImpl>()
 ) {
     Column(
         modifier = modifier
@@ -67,7 +69,7 @@ fun LoginScreen(
                         top = 16.dp
                     ),
                 value = name.text,
-                isError = !name.isValid,
+                isError = !name.valid,
                 onValueChanged = { newName -> viewModel.changeName(newName) },
                 placeholder = stringResource(id = R.string.name)
             )
@@ -82,7 +84,7 @@ fun LoginScreen(
                         top = 16.dp
                     ),
                 value = lastName.text,
-                isError = !lastName.isValid,
+                isError = !lastName.valid,
                 onValueChanged = { newLastName -> viewModel.changeLastName(newLastName) },
                 placeholder = stringResource(id = R.string.last_name)
             )
@@ -110,8 +112,7 @@ fun LoginScreen(
                         top = 32.dp
                     ),
                 text = stringResource(id = R.string.logon),
-                enabled = name.text.isNotBlank() && name.isValid &&
-                lastName.text.isNotBlank() && lastName.isValid && phone.isValid
+                enabled = name.isValid && lastName.isValid && phone.valid
             ) { viewModel.login() }
         }
 
