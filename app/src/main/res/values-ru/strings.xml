@@ -8,4 +8,9 @@
     <string name="login_credits_1">Нажимая кнопку “Войти”, Вы принимаете</string>
     <string name="login_credits_2">условия программы лояльности</string>
     <string name="invalid_login_info">Неверные данные для входа</string>
+    <string name="main_main">Главная</string>
+    <string name="main_catalog">Каталог</string>
+    <string name="main_cart">Корзина</string>
+    <string name="main_promo">Акции</string>
+    <string name="main_profile">Профиль</string>
 </resources>

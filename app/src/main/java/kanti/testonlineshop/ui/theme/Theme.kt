@@ -37,7 +37,6 @@ val Colors.elementBlack: Color get() = Black
 
     @Composable
 fun TestOnlineShopTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     val view = LocalView.current
@@ -48,8 +47,8 @@ fun TestOnlineShopTheme(
             window.statusBarColor = backgroundColor
             window.navigationBarColor = backgroundColor
             WindowCompat.getInsetsController(window, view).apply {
-                isAppearanceLightStatusBars = !darkTheme
-                isAppearanceLightNavigationBars = !darkTheme
+                isAppearanceLightStatusBars = true
+                isAppearanceLightNavigationBars = true
             }
         }
     }

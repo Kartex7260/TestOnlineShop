@@ -49,7 +49,13 @@ fun LoginScreen(
     fun navigate(destination: String) {
         navController.navigate(
             route = "${context.getString(R.string.nav_main)}/$destination"
-        )
+        ) {
+            popUpTo(
+                route = context.getString(R.string.nav_login)
+            ) {
+                inclusive = true
+            }
+        }
     }
     LaunchedEffect(key1 = viewModel) {
         viewModel.loginResult.collectLatest { result ->

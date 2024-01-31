@@ -17,4 +17,10 @@
     <string name="login_credits_1">By clicking the “Log in” button, you accept</string>
     <string name="login_credits_2">terms of the loyalty program</string>
     <string name="invalid_login_info">Invalid login information</string>
+    
+    <string name="main_main">Main</string>
+    <string name="main_catalog">Catalog</string>
+    <string name="main_cart">Cart</string>
+    <string name="main_promo">Promo</string>
+    <string name="main_profile">Profile</string>
 </resources>
