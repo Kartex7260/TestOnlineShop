@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">TestOnlineShop</string>
+    <string name="nav_login" translatable="false">login</string>
+
+    <string name="app_name" translatable="false">TestOnlineShop</string>
+    <string name="login">Login</string>
+    <string name="logon">Login</string>
+    <string name="name">Name</string>
+    <string name="last_name">Last name</string>
+    <string name="phone_number">Phone number</string>
 </resources>

@@ -44,8 +44,13 @@ fun TestOnlineShopTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colors.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            val backgroundColor = colors.backgroundWhite.toArgb()
+            window.statusBarColor = backgroundColor
+            window.navigationBarColor = backgroundColor
+            WindowCompat.getInsetsController(window, view).apply {
+                isAppearanceLightStatusBars = !darkTheme
+                isAppearanceLightNavigationBars = !darkTheme
+            }
         }
     }
 

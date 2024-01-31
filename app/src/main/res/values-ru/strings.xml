@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Вход</string>
+    <string name="logon">Войти</string>
+    <string name="name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="phone_number">Номер телефона</string>
+</resources>

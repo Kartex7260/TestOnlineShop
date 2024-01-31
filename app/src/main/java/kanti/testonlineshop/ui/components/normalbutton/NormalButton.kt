@@ -34,7 +34,11 @@ fun NormalButton(
         disabledBackgroundColor = MaterialTheme.colors.backgroundLightPink,
         disabledContentColor = MaterialTheme.colors.textWhite
     ),
-    shape = RoundedCornerShape(8.dp)
+    shape = RoundedCornerShape(8.dp),
+    elevation = ButtonDefaults.elevation(
+        defaultElevation = 0.dp,
+        pressedElevation = 0.dp
+    )
 ) {
     Text(
         text = text,
