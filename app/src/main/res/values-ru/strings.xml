@@ -5,4 +5,6 @@
     <string name="name">Имя</string>
     <string name="last_name">Фамилия</string>
     <string name="phone_number">Номер телефона</string>
+    <string name="login_credits_1">Нажимая кнопку “Войти”, Вы принимаете</string>
+    <string name="login_credits_2">условия программы лояльности</string>
 </resources>

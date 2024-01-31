@@ -136,14 +136,14 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Нажимая кнопку “Войти”, Вы принимаете",
+                text = stringResource(id = R.string.login_credits_1),
                 style = MaterialTheme.typography.caption1,
                 color = MaterialTheme.colors.textGrey
             )
             Spacer(modifier = Modifier.height(2.dp))
 
             Text(
-                text = "условия программы лояльности",
+                text = stringResource(id = R.string.login_credits_2),
                 style = MaterialTheme.typography.link,
                 color = MaterialTheme.colors.textGrey
             )

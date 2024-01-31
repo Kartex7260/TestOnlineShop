@@ -7,4 +7,6 @@
     <string name="name">Name</string>
     <string name="last_name">Last name</string>
     <string name="phone_number">Phone number</string>
+    <string name="login_credits_1">By clicking the “Log in” button, you accept</string>
+    <string name="login_credits_2">terms of the loyalty program</string>
 </resources>
