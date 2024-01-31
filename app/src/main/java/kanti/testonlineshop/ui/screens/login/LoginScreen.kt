@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -20,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import kanti.testonlineshop.R
+import kanti.testonlineshop.data.model.login.LoginResult
 import kanti.testonlineshop.ui.components.edittext.EditText
 import kanti.testonlineshop.ui.components.edittext.PhoneEditText
 import kanti.testonlineshop.ui.components.normalbutton.NormalButton
@@ -30,12 +32,23 @@ import kanti.testonlineshop.ui.theme.link
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.textGrey
 import kanti.testonlineshop.ui.theme.title1
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
     viewModel: LoginViewModel = hiltViewModel<LoginViewModelImpl>()
 ) {
+    LaunchedEffect(key1 = viewModel) {
+        viewModel.loginResult.collectLatest { result ->
+            when (result) {
+                is LoginResult.Register -> {}
+                is LoginResult.Success -> {}
+                is LoginResult.InvalidCredentials -> {}
+            }
+        }
+    }
+
     Column(
         modifier = modifier
     ) {
@@ -103,6 +116,7 @@ fun LoginScreen(
                 placeholder = stringResource(id = R.string.phone_number)
             )
 
+            val loginButtonEnabled by viewModel.loginButtonEnabled.collectAsState()
             NormalButton(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -112,7 +126,7 @@ fun LoginScreen(
                         top = 32.dp
                     ),
                 text = stringResource(id = R.string.logon),
-                enabled = name.isValid && lastName.isValid && phone.valid
+                enabled = loginButtonEnabled
             ) { viewModel.login() }
         }
 
