@@ -1,4 +1,4 @@
-package kanti.testonlineshop.ui.screens.login
+package kanti.testonlineshop.ui.screens
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kanti.testonlineshop.R
+import kanti.testonlineshop.ui.screens.login.LoginScreen
 
 @Composable
 fun NavGraph(

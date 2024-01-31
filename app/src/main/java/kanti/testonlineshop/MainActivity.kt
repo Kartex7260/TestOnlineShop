@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
-import kanti.testonlineshop.ui.screens.login.NavGraph
+import kanti.testonlineshop.ui.screens.NavGraph
 import kanti.testonlineshop.ui.theme.TestOnlineShopTheme
 import kanti.testonlineshop.ui.theme.backgroundWhite
 

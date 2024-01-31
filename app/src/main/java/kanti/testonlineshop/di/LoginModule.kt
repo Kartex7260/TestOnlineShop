@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kanti.testonlineshop.data.model.login.LoginRepository
 import kanti.testonlineshop.data.model.login.LoginRepositoryImpl
+import kanti.testonlineshop.data.model.login.datasource.local.LoginLocalDataSource
+import kanti.testonlineshop.data.model.login.datasource.local.LoginRoomDataSource
 import javax.inject.Singleton
 
 @Module
@@ -15,4 +17,8 @@ interface LoginModule {
     @Binds
     @Singleton
     fun bindLoginRepositoryImpl(repository: LoginRepositoryImpl): LoginRepository
+
+    @Binds
+    @Singleton
+    fun bindLoginRoomDataSource(dataSource: LoginRoomDataSource): LoginLocalDataSource
 }
