@@ -7,4 +7,5 @@
     <string name="phone_number">Номер телефона</string>
     <string name="login_credits_1">Нажимая кнопку “Войти”, Вы принимаете</string>
     <string name="login_credits_2">условия программы лояльности</string>
+    <string name="invalid_login_info">Неверные данные для входа</string>
 </resources>

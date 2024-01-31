@@ -1,5 +1,12 @@
 <resources>
     <string name="nav_login" translatable="false">login</string>
+    <string name="nav_main" translatable="false">main</string>
+
+    <string name="nav_main_main" translatable="false">main_main</string>
+    <string name="nav_main_catalog" translatable="false">main_catalog</string>
+    <string name="nav_main_cart" translatable="false">main_cart</string>
+    <string name="nav_main_promo" translatable="false">main_promo</string>
+    <string name="nav_main_profile" translatable="false">main_profile</string>
 
     <string name="app_name" translatable="false">TestOnlineShop</string>
     <string name="login">Login</string>
@@ -9,4 +16,5 @@
     <string name="phone_number">Phone number</string>
     <string name="login_credits_1">By clicking the “Log in” button, you accept</string>
     <string name="login_credits_2">terms of the loyalty program</string>
+    <string name="invalid_login_info">Invalid login information</string>
 </resources>

@@ -6,11 +6,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.screens.login.LoginScreen
+import kanti.testonlineshop.ui.screens.main.SuperScreen
 
 @Composable
 fun NavGraph(
@@ -26,7 +29,17 @@ fun NavGraph(
         composable(
             route = context.getString(R.string.nav_login)
         ) {
-            LoginScreen()
+            LoginScreen(navController = navController)
+        }
+
+        val mainArg1 = "destination"
+        composable(
+            route = "${context.getString(R.string.nav_main)}/{$mainArg1}",
+            arguments = listOf(navArgument(mainArg1) { type = NavType.StringType })
+        ) {
+            SuperScreen(
+                startDestination = it.arguments?.getString(mainArg1)
+            )
         }
     }
 }

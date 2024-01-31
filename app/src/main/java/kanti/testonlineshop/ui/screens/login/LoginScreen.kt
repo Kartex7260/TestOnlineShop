@@ -1,5 +1,7 @@
 package kanti.testonlineshop.ui.screens.login
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,10 +18,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.login.LoginResult
 import kanti.testonlineshop.ui.components.edittext.EditText
@@ -37,14 +42,31 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
+    navController: NavController = rememberNavController(),
+    context: Context = LocalContext.current,
     viewModel: LoginViewModel = hiltViewModel<LoginViewModelImpl>()
 ) {
+    fun navigate(destination: String) {
+        navController.navigate(
+            route = "${context.getString(R.string.nav_main)}/$destination"
+        )
+    }
     LaunchedEffect(key1 = viewModel) {
         viewModel.loginResult.collectLatest { result ->
             when (result) {
-                is LoginResult.Register -> {}
-                is LoginResult.Success -> {}
-                is LoginResult.InvalidCredentials -> {}
+                is LoginResult.Register -> {
+                    navigate(context.getString(R.string.nav_main_main))
+                }
+                is LoginResult.Success -> {
+                    navigate(context.getString(R.string.nav_main_catalog))
+                }
+                is LoginResult.InvalidCredentials -> {
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.invalid_login_info),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
