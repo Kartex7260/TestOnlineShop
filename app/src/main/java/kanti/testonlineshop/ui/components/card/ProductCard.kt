@@ -1,4 +1,4 @@
-package kanti.testonlineshop.ui.components
+package kanti.testonlineshop.ui.components.card
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -31,10 +31,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.product.Product
+import kanti.testonlineshop.ui.components.DiscountTag
+import kanti.testonlineshop.ui.components.PagingIndicator
+import kanti.testonlineshop.ui.components.PastPriceText
+import kanti.testonlineshop.ui.components.RatingTag
+import kanti.testonlineshop.ui.components.buttons.IconButton
 import kanti.testonlineshop.ui.components.buttons.PlusButton
 import kanti.testonlineshop.ui.theme.backgroundLightGrey
 import kanti.testonlineshop.ui.theme.backgroundWhite
 import kanti.testonlineshop.ui.theme.caption1
+import kanti.testonlineshop.ui.theme.elementPink
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.textGrey
 import kanti.testonlineshop.ui.theme.title2
@@ -46,6 +52,7 @@ fun ProductCard(
     modifier: Modifier = Modifier,
     product: Product,
     images: List<Painter>,
+    onFavouriteClick: (Boolean) -> Unit = {},
     onClick: () -> Unit = {}
 ) = Surface(
     border = BorderStroke(
@@ -59,9 +66,7 @@ fun ProductCard(
 ) {
     val currency = product.price.unit
     Column {
-        Box(
-            contentAlignment = Alignment.BottomCenter
-        ) {
+        Box {
             val pagerState = rememberPagerState { images.size }
             HorizontalPager(
                 modifier = Modifier.height(144.dp),
@@ -75,9 +80,21 @@ fun ProductCard(
                 )
             }
             PagingIndicator(
+                modifier = Modifier.align(Alignment.BottomCenter),
                 count = images.size,
                 select = pagerState.currentPage
             )
+            IconButton(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(
+                        top = 6.dp,
+                        end = 6.dp
+                    ),
+                iconId = if (product.favourite) R.drawable.heart_full
+                else R.drawable.heart_empty,
+                tint = MaterialTheme.colors.elementPink
+            ) { onFavouriteClick(!product.favourite) }
         }
 
         // PAST PRICE

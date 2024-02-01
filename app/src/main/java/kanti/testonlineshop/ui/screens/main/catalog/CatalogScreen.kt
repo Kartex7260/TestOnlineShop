@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kanti.testonlineshop.R
-import kanti.testonlineshop.ui.components.ProductCard
+import kanti.testonlineshop.ui.components.card.ProductCard
 import kanti.testonlineshop.ui.components.buttons.IconTextButton
 import kanti.testonlineshop.ui.components.buttons.TagButton
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModel

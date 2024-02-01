@@ -64,7 +64,7 @@ fun TagButton(
         if (select) {
             IconButton(
                 modifier = Modifier.size(20.dp),
-                id = tailIcon,
+                iconId = tailIcon,
                 tint = MaterialTheme.colors.elementWhite
             ) { iconClick() }
         }

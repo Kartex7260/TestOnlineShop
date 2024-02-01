@@ -16,7 +16,7 @@ import kanti.testonlineshop.ui.theme.elementBlack
 @Composable
 fun IconButton(
     modifier: Modifier = Modifier,
-    @DrawableRes id: Int,
+    @DrawableRes iconId: Int,
     tint: Color = MaterialTheme.colors.elementBlack,
     onClick: () -> Unit = {}
 ) = androidx.compose.material.IconButton(
@@ -25,7 +25,7 @@ fun IconButton(
         .size(32.dp)
 ) {
     Icon(
-        painter = painterResource(id = id),
+        painter = painterResource(id = iconId),
         contentDescription = null,
         tint = tint
     )
@@ -35,6 +35,6 @@ fun IconButton(
 @Composable
 private fun PreviewIconButton() {
     IconButton(
-        id = R.drawable.plus
+        iconId = R.drawable.plus
     )
 }

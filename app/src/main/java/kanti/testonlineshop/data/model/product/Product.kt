@@ -17,5 +17,7 @@ data class Product(
 
     val info: List<Info> = listOf(Info()),
 
-    val ingredients: String = ""
+    val ingredients: String = "",
+
+    val favourite: Boolean = false
 )
