@@ -28,13 +28,15 @@ enum class SortType(
             product.price.priceWithDiscount.toFloat()
         },
         ascending = true
-    );
+    )
+}
 
-    fun getStringRes(context: Context): String {
-        return when(this) {
-            Rating -> context.getString(R.string.sort_rating)
-            PriceReduction -> context.getString(R.string.sort_price_reduction)
-            PriceIncrease -> context.getString(R.string.sort_price_increase)
-        }
+fun SortType?.getStringRes(context: Context): String {
+    if (this == null)
+        return context.getString(R.string.sort)
+    return when(this) {
+        SortType.Rating -> context.getString(R.string.sort_rating)
+        SortType.PriceReduction -> context.getString(R.string.sort_price_reduction)
+        SortType.PriceIncrease -> context.getString(R.string.sort_price_increase)
     }
 }

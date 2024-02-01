@@ -39,6 +39,7 @@ import kanti.testonlineshop.ui.components.card.ProductCard
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModel
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModelImpl
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.TagUiState
+import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.getStringRes
 import kanti.testonlineshop.ui.theme.elementPink
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.title1

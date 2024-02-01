@@ -12,7 +12,7 @@ interface CatalogViewModel {
 
     val process: StateFlow<Boolean> get() = MutableStateFlow(false)
 
-    val sort: StateFlow<SortType> get() = MutableStateFlow(SortType.Rating)
+    val sort: StateFlow<SortType?> get() = MutableStateFlow(SortType.Rating)
     val selectedTag: StateFlow<TagUiState?> get() = MutableStateFlow(TagUiState())
 
     fun getImages(productId: String): Flow<List<Any>> { return MutableStateFlow(listOf()) }

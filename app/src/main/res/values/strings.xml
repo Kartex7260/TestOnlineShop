@@ -36,4 +36,5 @@
     <string name="tag_mask_name">Mask</string>
     <string name="tag_mask_data" translatable="false">mask</string>
     <string name="catalog_topbar_filters">Filters</string>
+    <string name="sort">Sorting</string>
 </resources>

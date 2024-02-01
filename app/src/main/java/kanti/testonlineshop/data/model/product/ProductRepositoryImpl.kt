@@ -21,7 +21,9 @@ class ProductRepositoryImpl @Inject constructor(
         val favouriteData = localDataSource.getFavouriteData()
         localDataSource.deleteAll()
         localDataSource.insert(products)
-        localDataSource.setFavouriteData(favouriteData)
+
+        if (favouriteData.isNotEmpty())
+            localDataSource.setFavouriteData(favouriteData)
     }
 
     override suspend fun setFavourite(productId: String, favourite: Boolean) {
