@@ -9,11 +9,13 @@ import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.product.Product
 import kanti.testonlineshop.data.model.product.ProductRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -82,7 +84,7 @@ class CatalogViewModelImpl @Inject constructor(
         }
         .flowOn(Dispatchers.Default)
         .onEach {
-            if (_process.value == true)
+            if (_process.value)
                 _process.value = false
         }
         .stateIn(
@@ -98,6 +100,23 @@ class CatalogViewModelImpl @Inject constructor(
         _process.value = true
         viewModelScope.launch {
             productRepository.loadFromRemote()
+        }
+    }
+
+    override fun getImages(productId: String): Flow<List<Any>> {
+        return flow {
+            val images = when (productId) {
+                "cbf0c984-7c6c-4ada-82da-e29dc698bb50" -> listOf(R.drawable.d6, R.drawable.d5)
+                "54a876a5-2205-48ba-9498-cfecff4baa6e" -> listOf(R.drawable.d1, R.drawable.d2)
+                "75c84407-52e1-4cce-a73a-ff2d3ac031b3" -> listOf(R.drawable.d5, R.drawable.d6)
+                "16f88865-ae74-4b7c-9d85-b68334bb97db" -> listOf(R.drawable.d3, R.drawable.d4)
+                "26f88856-ae74-4b7c-9d85-b68334bb97db" -> listOf(R.drawable.d2, R.drawable.d3)
+                "15f88865-ae74-4b7c-9d81-b78334bb97db" -> listOf(R.drawable.d6, R.drawable.d1)
+                "88f88865-ae74-4b7c-9d81-b78334bb97db" -> listOf(R.drawable.d4, R.drawable.d3)
+                "55f58865-ae74-4b7c-9d81-b78334bb97db" -> listOf(R.drawable.d1, R.drawable.d5)
+                else -> listOf<Any>()
+            }
+            emit(images)
         }
     }
 

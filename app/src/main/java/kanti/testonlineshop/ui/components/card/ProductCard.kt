@@ -2,7 +2,6 @@ package kanti.testonlineshop.ui.components.card
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,12 +22,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.product.Product
 import kanti.testonlineshop.ui.components.DiscountTag
@@ -51,7 +53,7 @@ import kanti.testonlineshop.ui.theme.title3
 fun ProductCard(
     modifier: Modifier = Modifier,
     product: Product,
-    images: List<Painter>,
+    images: List<Any>,
     onFavouriteClick: (Boolean) -> Unit = {},
     onClick: () -> Unit = {}
 ) = Surface(
@@ -73,10 +75,16 @@ fun ProductCard(
             HorizontalPager(
                 modifier = Modifier.height(144.dp),
                 state = pagerState
-            ) {
-                Image(
+            ) { index ->
+                val imageRequest = ImageRequest.Builder(LocalContext.current)
+                    .memoryCacheKey(images[index].toString())
+                    .memoryCachePolicy(CachePolicy.ENABLED)
+                    .lifecycle(LocalLifecycleOwner.current)
+                    .data(images[index])
+                    .build()
+                AsyncImage(
                     modifier = Modifier.fillMaxWidth(),
-                    painter = images[it],
+                    model = imageRequest,
                     contentDescription = null,
                     contentScale = ContentScale.FillWidth
                 )
@@ -177,10 +185,10 @@ fun PreviewProductCard() {
     ProductCard(
         product = Product(),
         images = listOf(
-            painterResource(id = R.drawable.d1),
-            painterResource(id = R.drawable.d5),
-            painterResource(id = R.drawable.d3),
-            painterResource(id = R.drawable.d2)
+            R.drawable.d1,
+            R.drawable.d5,
+            R.drawable.d3,
+            R.drawable.d2
         )
     )
 }

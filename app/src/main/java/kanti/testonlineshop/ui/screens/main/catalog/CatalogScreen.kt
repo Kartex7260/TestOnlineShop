@@ -166,9 +166,11 @@ fun CatalogScreen(
                     items = products,
                     key = { it.id }
                 ) { product ->
+                    val images by viewModel.getImages(product.id)
+                        .collectAsState(initial = listOf())
                     ProductCard(
                         product = product,
-                        images = listOf(),
+                        images = images,
                         onFavouriteClick = {
                             viewModel.setFavourite(product.id, it)
                         }

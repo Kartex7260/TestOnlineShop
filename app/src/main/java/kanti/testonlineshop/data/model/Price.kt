@@ -1,5 +1,8 @@
 package kanti.testonlineshop.data.model
 
+import androidx.compose.runtime.Stable
+
+@Stable
 data class Price(
     val price: String = "100",
     val discount: Int = 50,
