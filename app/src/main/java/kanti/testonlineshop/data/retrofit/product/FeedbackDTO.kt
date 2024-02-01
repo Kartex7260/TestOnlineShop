@@ -1,11 +1,6 @@
-package com.example.example
+package kanti.testonlineshop.data.retrofit.product
 
-import com.google.gson.annotations.SerializedName
-
-
-data class FeedbackDTO (
-
-  @SerializedName("count"  ) var count  : Int?    = null,
-  @SerializedName("rating" ) var rating : Double? = null
-
+data class FeedbackDTO(
+    var count: Int = 0,
+    var rating: Float = 0.0f
 )

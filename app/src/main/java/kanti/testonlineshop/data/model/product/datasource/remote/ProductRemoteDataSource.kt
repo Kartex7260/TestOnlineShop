@@ -4,5 +4,5 @@ import kanti.testonlineshop.data.model.product.Product
 
 interface ProductRemoteDataSource {
 
-    suspend fun getProducts(): List<Product>
+    suspend fun getProducts(): List<Product> { return listOf() }
 }

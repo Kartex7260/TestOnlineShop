@@ -1,11 +1,6 @@
-package com.example.example
+package kanti.testonlineshop.data.retrofit.product
 
-import com.google.gson.annotations.SerializedName
-
-
-data class InfoDTO (
-
-  @SerializedName("title" ) var title : String? = null,
-  @SerializedName("value" ) var value : String? = null
-
+data class InfoDTO(
+    var title: String = "",
+    var value: String = ""
 )
