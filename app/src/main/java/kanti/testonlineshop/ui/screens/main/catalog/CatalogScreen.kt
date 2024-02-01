@@ -152,7 +152,10 @@ fun CatalogScreen(
             ) { product ->
                 ProductCard(
                     product = product,
-                    images = listOf()
+                    images = listOf(),
+                    onFavouriteClick = {
+                        viewModel.setFavourite(product.id, it)
+                    }
                 ) {
                     toProductScreen(product.id)
                 }

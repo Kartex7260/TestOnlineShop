@@ -14,5 +14,7 @@ interface CatalogViewModel {
 
     fun setSort(sort: SortType) {}
 
+    fun setFavourite(productId: String, favourite: Boolean) {}
+
     companion object : CatalogViewModel
 }
