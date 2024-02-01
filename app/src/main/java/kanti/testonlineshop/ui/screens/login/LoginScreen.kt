@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -112,6 +116,7 @@ fun LoginScreen(
                 value = name.text,
                 isError = !name.valid,
                 onValueChanged = { newName -> viewModel.changeName(newName) },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 placeholder = stringResource(id = R.string.name)
             )
 
@@ -127,9 +132,11 @@ fun LoginScreen(
                 value = lastName.text,
                 isError = !lastName.valid,
                 onValueChanged = { newLastName -> viewModel.changeLastName(newLastName) },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 placeholder = stringResource(id = R.string.last_name)
             )
 
+            val loginIsAllow by viewModel.loginButtonEnabled.collectAsState()
             val phone by viewModel.phone.collectAsState()
             PhoneEditText(
                 modifier = Modifier
@@ -141,10 +148,24 @@ fun LoginScreen(
                     ),
                 value = phone.text,
                 onValueChanged = { newPhone -> viewModel.changePhone(newPhone) },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Phone,
+                    imeAction = if (loginIsAllow) ImeAction.Done
+                    else ImeAction.None
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        if (loginIsAllow) {
+                            viewModel.login()
+                            defaultKeyboardAction(ImeAction.Done)
+                        } else {
+                            defaultKeyboardAction(ImeAction.None)
+                        }
+                    }
+                ),
                 placeholder = stringResource(id = R.string.phone_number)
             )
 
-            val loginButtonEnabled by viewModel.loginButtonEnabled.collectAsState()
             NormalButton(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -154,7 +175,7 @@ fun LoginScreen(
                         top = 32.dp
                     ),
                 text = stringResource(id = R.string.logon),
-                enabled = loginButtonEnabled
+                enabled = loginIsAllow
             ) { viewModel.login() }
         }
 
