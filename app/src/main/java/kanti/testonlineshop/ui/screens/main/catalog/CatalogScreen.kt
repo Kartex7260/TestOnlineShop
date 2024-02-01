@@ -27,11 +27,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.components.buttons.IconTextButton
 import kanti.testonlineshop.ui.components.buttons.TagButton
 import kanti.testonlineshop.ui.components.card.ProductCard
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModel
+import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModelImpl
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.TagUiState
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.title1
@@ -98,7 +100,8 @@ private fun Tags(
             TagButton(
                 tailIcon = R.drawable.tag_clear,
                 select = tag.isSelect,
-                onClick = { onTagClick(tag.title) },
+                text = tag.title,
+                onClick = { onTagClick(tag.productTag) },
                 iconClick = { onClear() }
             )
         }
@@ -109,7 +112,7 @@ private fun Tags(
 fun CatalogScreen(
     modifier: Modifier = Modifier,
     toProductScreen: (String) -> Unit = {},
-    viewModel: CatalogViewModel = CatalogViewModel
+    viewModel: CatalogViewModel = hiltViewModel<CatalogViewModelImpl>()
 ) {
     Column(
         modifier = modifier

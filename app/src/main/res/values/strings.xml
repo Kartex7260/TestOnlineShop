@@ -26,4 +26,13 @@
     <string name="sort_rating">By popularity</string>
     <string name="sort_price_reduction">By reducing the price</string>
     <string name="sort_price_increase">By increasing the price</string>
+    <string name="tag_watch_all">Watch all</string>
+    <string name="tag_face_name">Face</string>
+    <string name="tag_body_name">Body</string>
+    <string name="tag_face_data" translatable="false">face</string>
+    <string name="tag_body_data" translatable="false">body</string>
+    <string name="tag_suntan_name">Suntan</string>
+    <string name="tag_suntan_data" translatable="false">suntan</string>
+    <string name="tag_mask_name">Mask</string>
+    <string name="tag_mask_data" translatable="false">mask</string>
 </resources>
