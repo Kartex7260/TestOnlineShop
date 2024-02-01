@@ -23,4 +23,7 @@
     <string name="main_cart">Cart</string>
     <string name="main_promo">Promo</string>
     <string name="main_profile">Profile</string>
+    <string name="sort_rating">By popularity</string>
+    <string name="sort_price_reduction">By reducing the price</string>
+    <string name="sort_price_increase">By increasing the price</string>
 </resources>

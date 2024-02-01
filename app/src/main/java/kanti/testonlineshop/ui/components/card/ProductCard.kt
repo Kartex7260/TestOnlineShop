@@ -66,7 +66,9 @@ fun ProductCard(
 ) {
     val currency = product.price.unit
     Column {
-        Box {
+        Box(
+            modifier = Modifier.fillMaxWidth()
+        ) {
             val pagerState = rememberPagerState { images.size }
             HorizontalPager(
                 modifier = Modifier.height(144.dp),

@@ -13,4 +13,7 @@
     <string name="main_cart">Корзина</string>
     <string name="main_promo">Акции</string>
     <string name="main_profile">Профиль</string>
+    <string name="sort_rating">По популярности</string>
+    <string name="sort_price_reduction">По уменьшению цены</string>
+    <string name="sort_price_increase">По увеличению цены</string>
 </resources>

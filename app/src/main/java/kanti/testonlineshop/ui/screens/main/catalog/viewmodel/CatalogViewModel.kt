@@ -6,27 +6,13 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface CatalogViewModel {
 
-    val tags: StateFlow<List<TagUiState>> get() = MutableStateFlow(listOf(
-        TagUiState("Test", true),
-        TagUiState("Quest")
-    ))
+    val tags: StateFlow<List<TagUiState>> get() = MutableStateFlow(listOf())
+    val products: StateFlow<List<Product>> get() = MutableStateFlow(listOf())
 
-    val products: StateFlow<List<Product>> get() = MutableStateFlow(listOf(
-        Product(id = "1"),
-        Product(id = "2"),
-        Product(id = "3"),
-        Product(id = "4"),
-        Product(id = "5"),
-        Product(id = "6"),
-        Product(id = "7"),
-        Product(id = "8"),
-        Product(id = "9"),
-        Product(id = "10"),
-        Product(id = "11"),
-        Product(id = "12"),
-        Product(id = "13"),
+    fun setTag(tag: String) {}
+    fun clearTag() {}
 
-    ))
+    fun setSort(sort: SortType) {}
 
     companion object : CatalogViewModel
 }
