@@ -9,6 +9,8 @@ interface CatalogViewModel {
     val tags: StateFlow<List<TagUiState>> get() = MutableStateFlow(listOf())
     val products: StateFlow<List<Product>> get() = MutableStateFlow(listOf())
 
+    val process: StateFlow<Boolean> get() = MutableStateFlow(false)
+
     fun setTag(productTag: String) {}
     fun clearTag() {}
 

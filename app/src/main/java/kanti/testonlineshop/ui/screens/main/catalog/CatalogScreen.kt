@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -35,6 +36,7 @@ import kanti.testonlineshop.ui.components.card.ProductCard
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModel
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModelImpl
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.TagUiState
+import kanti.testonlineshop.ui.theme.elementPink
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.title1
 
@@ -142,25 +144,37 @@ fun CatalogScreen(
         )
 
         val products by viewModel.products.collectAsState()
-        LazyVerticalGrid(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(7.dp),
-            horizontalArrangement = Arrangement.spacedBy(7.dp),
-            columns = GridCells.Fixed(2)
-        ) {
-            items(
-                items = products,
-                key = { it.id }
-            ) { product ->
-                ProductCard(
-                    product = product,
-                    images = listOf(),
-                    onFavouriteClick = {
-                        viewModel.setFavourite(product.id, it)
+        val process by viewModel.process.collectAsState()
+        if (process) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(
+                    color = MaterialTheme.colors.elementPink
+                )
+            }
+        } else {
+            LazyVerticalGrid(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(7.dp),
+                horizontalArrangement = Arrangement.spacedBy(7.dp),
+                columns = GridCells.Fixed(2)
+            ) {
+                items(
+                    items = products,
+                    key = { it.id }
+                ) { product ->
+                    ProductCard(
+                        product = product,
+                        images = listOf(),
+                        onFavouriteClick = {
+                            viewModel.setFavourite(product.id, it)
+                        }
+                    ) {
+                        toProductScreen(product.id)
                     }
-                ) {
-                    toProductScreen(product.id)
                 }
             }
         }
