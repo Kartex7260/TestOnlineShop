@@ -67,11 +67,25 @@ class CatalogViewModelImpl @Inject constructor(
             initialValue = listOf()
         )
 
-    private val _sort = MutableStateFlow<SortType?>(null)
+    override val selectedTag: StateFlow<TagUiState?> = _currentTag
+        .map { currentTag ->
+            if (currentTag == null)
+                return@map null
+            _tags.firstOrNull { tagUiState ->
+                tagUiState.productTag == currentTag
+            }
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Lazily,
+            initialValue = null
+        )
+
+    private val _sort = MutableStateFlow(SortType.Rating)
+    override val sort: StateFlow<SortType> = _sort.asStateFlow()
+
     override val products: StateFlow<List<Product>> = productRepository.products
         .combine(_sort) { products, sort ->
-            if (sort == null)
-                return@combine products
             if (sort.ascending)
                 products.sortedBy(sort.sortFunc)
             else

@@ -15,10 +15,11 @@
     <string name="main_profile">Профиль</string>
     <string name="sort_rating">По популярности</string>
     <string name="sort_price_reduction">По уменьшению цены</string>
-    <string name="sort_price_increase">По увеличению цены</string>
+    <string name="sort_price_increase">По возрастанию цены</string>
     <string name="tag_watch_all">Смотреть всё</string>
     <string name="tag_face_name">Лицо</string>
     <string name="tag_body_name">Тело</string>
     <string name="tag_suntan_name">Загар</string>
     <string name="tag_mask_name">Маски</string>
+    <string name="catalog_topbar_filters">Фильтры</string>
 </resources>

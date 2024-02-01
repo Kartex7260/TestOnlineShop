@@ -1,5 +1,7 @@
 package kanti.testonlineshop.ui.screens.main.catalog.viewmodel
 
+import android.content.Context
+import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.product.Product
 
 enum class SortType(
@@ -26,5 +28,13 @@ enum class SortType(
             product.price.priceWithDiscount.toFloat()
         },
         ascending = true
-    )
+    );
+
+    fun getStringRes(context: Context): String {
+        return when(this) {
+            Rating -> context.getString(R.string.sort_rating)
+            PriceReduction -> context.getString(R.string.sort_price_reduction)
+            PriceIncrease -> context.getString(R.string.sort_price_increase)
+        }
+    }
 }
