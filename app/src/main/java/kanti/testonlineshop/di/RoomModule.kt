@@ -9,6 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kanti.testonlineshop.data.room.TOSDatabase
 import kanti.testonlineshop.data.room.login.LoginDao
+import kanti.testonlineshop.data.room.product.ProductDao
 import javax.inject.Singleton
 
 @Module
@@ -25,5 +26,11 @@ object RoomModule {
     @Singleton
     fun provideLoginDao(database: TOSDatabase): LoginDao {
         return database.loginDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductDao(database: TOSDatabase): ProductDao {
+        return database.productDao()
     }
 }

@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kanti.testonlineshop.data.model.product.ProductRepository
 import kanti.testonlineshop.data.model.product.ProductRepositoryImpl
+import kanti.testonlineshop.data.model.product.datasource.local.ProductLocalDataSource
+import kanti.testonlineshop.data.model.product.datasource.local.ProductRoomDataSource
 import kanti.testonlineshop.data.model.product.datasource.remote.ProductRemoteDataSource
 import kanti.testonlineshop.data.model.product.datasource.remote.ProductRetrofitDataSource
 
@@ -20,4 +22,9 @@ interface ProductModule {
     fun bindProductRetrofitDataSource(
         dataSource: ProductRetrofitDataSource
     ): ProductRemoteDataSource
+
+    @Binds
+    fun bindProductRoomDataSource(
+        dataSource: ProductRoomDataSource
+    ): ProductLocalDataSource
 }
