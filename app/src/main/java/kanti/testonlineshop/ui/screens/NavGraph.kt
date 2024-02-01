@@ -14,6 +14,7 @@ import androidx.navigation.navArgument
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.screens.login.LoginScreen
 import kanti.testonlineshop.ui.screens.main.SuperScreen
+import kanti.testonlineshop.ui.screens.productdetail.ProductDetailScreen
 
 @Composable
 fun NavGraph(
@@ -38,7 +39,18 @@ fun NavGraph(
             arguments = listOf(navArgument(mainArg1) { type = NavType.StringType })
         ) {
             SuperScreen(
-                startDestination = it.arguments?.getString(mainArg1)
+                startDestination = it.arguments?.getString(mainArg1),
+                superNavController = navController
+            )
+        }
+
+        val productDetailArg1 = "productId"
+        composable(
+            route = "${context.getString(R.string.nav_product_detail)}/{$productDetailArg1}",
+            arguments = listOf(navArgument(productDetailArg1) { type = NavType.StringType })
+        ) {
+            ProductDetailScreen(
+                productId = it.arguments?.getString(productDetailArg1)
             )
         }
     }

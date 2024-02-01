@@ -53,13 +53,13 @@ fun SuperScreen(
     startDestination: String? = null,
     superNavController: NavController = rememberNavController()
 ) {
-    val navController = rememberNavController()
+    val currentNavController = rememberNavController()
     Column {
         val context = LocalContext.current
         val navBottomItems = navItems()
         NavHost(
             modifier = Modifier.weight(1f),
-            navController = navController,
+            navController = currentNavController,
             startDestination = startDestination ?: stringResource(id = R.string.nav_main_main)
         ) {
             composable(
@@ -72,8 +72,10 @@ fun SuperScreen(
                 route = context.getString(R.string.nav_main_catalog)
             ) {
                 CatalogScreen(
-                    toProductScreen = {
-                        // TODO: navigate to product screen
+                    toProductScreen = { productId ->
+                        superNavController.navigate(
+                            route = "${context.getString(R.string.nav_product_detail)}/$productId"
+                        )
                     }
                 )
             }
@@ -98,7 +100,7 @@ fun SuperScreen(
         }
         BottomNavigationBar(
             modifier = Modifier.fillMaxWidth(),
-            navController = navController,
+            navController = currentNavController,
             items = navBottomItems
         )
     }

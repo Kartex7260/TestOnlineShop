@@ -1,6 +1,7 @@
 <resources>
     <string name="nav_login" translatable="false">login</string>
     <string name="nav_main" translatable="false">main</string>
+    <string name="nav_product_detail" translatable="false">product_detail</string>
 
     <string name="nav_main_main" translatable="false">main_main</string>
     <string name="nav_main_catalog" translatable="false">main_catalog</string>
