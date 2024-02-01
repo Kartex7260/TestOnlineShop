@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kanti.testonlineshop.data.retrofit.product.ProductService
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -16,6 +17,7 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl("https://run.mocky.io/v3/")
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     @Provides
