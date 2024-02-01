@@ -8,6 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -49,7 +50,8 @@ fun navItems() = listOf(
 
 @Composable
 fun SuperScreen(
-    startDestination: String? = null
+    startDestination: String? = null,
+    superNavController: NavController = rememberNavController()
 ) {
     val navController = rememberNavController()
     Column {
@@ -69,7 +71,11 @@ fun SuperScreen(
             composable(
                 route = context.getString(R.string.nav_main_catalog)
             ) {
-                CatalogScreen()
+                CatalogScreen(
+                    toProductScreen = {
+                        // TODO: navigate to product screen
+                    }
+                )
             }
 
             composable(

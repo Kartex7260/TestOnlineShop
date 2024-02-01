@@ -1,11 +1,11 @@
 package kanti.testonlineshop.ui.components.buttons
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
@@ -15,8 +15,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -40,26 +38,23 @@ fun TagButton(
     text: String = "Label",
     @DrawableRes tailIcon: Int,
     onClick: () -> Unit = {},
+    iconClick: () -> Unit = {}
 ) = Surface(
     shape = RoundedCornerShape(100.dp),
     color = if (select) MaterialTheme.colors.elementDarkBlue
     else MaterialTheme.colors.backgroundLightGrey,
 
     modifier = modifier
-        .height(28.dp)
-        .semantics { role = Role.Button },
+        .semantics { role = Role.Button }
+        .height(28.dp),
     onClick = onClick
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(
-//            top = 2.dp,
-            bottom = 2.dp,
-            start = 12.dp,
-            end = 8.dp
-        )
+        verticalAlignment = Alignment.CenterVertically
     ) {
+        Spacer(modifier = Modifier.width(12.dp))
         Text(
+            modifier = Modifier.offset(y = (-1).dp),
             text = text,
             color = if (select) MaterialTheme.colors.textWhite
             else MaterialTheme.colors.textGrey,
@@ -67,12 +62,13 @@ fun TagButton(
         )
         Spacer(modifier = Modifier.width(4.dp))
         if (select) {
-            Image(
-                painter = painterResource(id = tailIcon),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(MaterialTheme.colors.elementWhite)
-            )
+            IconButton(
+                modifier = Modifier.size(20.dp),
+                id = tailIcon,
+                tint = MaterialTheme.colors.elementWhite
+            ) { iconClick() }
         }
+        Spacer(modifier = Modifier.width(8.dp))
     }
 }
 
@@ -82,7 +78,7 @@ fun PreviewTagButton(
     @PreviewParameter(PreviewChipButtonSelect::class) select: Boolean
 ) {
     TagButton(
-        tailIcon = R.drawable.plus,
+        tailIcon = R.drawable.tag_clear,
         select = select
     )
 }
