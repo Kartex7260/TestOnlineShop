@@ -1,7 +1,6 @@
-package kanti.testonlineshop.ui.components.card
+package kanti.testonlineshop.ui.components.product
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,8 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
@@ -22,19 +19,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.request.CachePolicy
-import coil.request.ImageRequest
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.product.Product
 import kanti.testonlineshop.ui.components.DiscountTag
-import kanti.testonlineshop.ui.components.PagingIndicator
 import kanti.testonlineshop.ui.components.PastPriceText
 import kanti.testonlineshop.ui.components.RatingTag
 import kanti.testonlineshop.ui.components.buttons.IconButton
@@ -48,7 +38,7 @@ import kanti.testonlineshop.ui.theme.textGrey
 import kanti.testonlineshop.ui.theme.title2
 import kanti.testonlineshop.ui.theme.title3
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ProductCard(
     modifier: Modifier = Modifier,
@@ -71,28 +61,9 @@ fun ProductCard(
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
-            val pagerState = rememberPagerState { images.size }
-            HorizontalPager(
+            SmallProductImages(
                 modifier = Modifier.height(144.dp),
-                state = pagerState
-            ) { index ->
-                val imageRequest = ImageRequest.Builder(LocalContext.current)
-                    .memoryCacheKey(images[index].toString())
-                    .memoryCachePolicy(CachePolicy.ENABLED)
-                    .lifecycle(LocalLifecycleOwner.current)
-                    .data(images[index])
-                    .build()
-                AsyncImage(
-                    modifier = Modifier.fillMaxWidth(),
-                    model = imageRequest,
-                    contentDescription = null,
-                    contentScale = ContentScale.FillWidth
-                )
-            }
-            PagingIndicator(
-                modifier = Modifier.align(Alignment.BottomCenter),
-                count = images.size,
-                select = pagerState.currentPage
+                images = images
             )
             IconButton(
                 modifier = Modifier

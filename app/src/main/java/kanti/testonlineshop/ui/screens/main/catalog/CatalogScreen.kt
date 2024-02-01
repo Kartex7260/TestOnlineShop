@@ -35,7 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.components.buttons.IconTextButton
 import kanti.testonlineshop.ui.components.buttons.TagButton
-import kanti.testonlineshop.ui.components.card.ProductCard
+import kanti.testonlineshop.ui.components.product.ProductCard
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModel
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModelImpl
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.TagUiState
