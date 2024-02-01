@@ -15,8 +15,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,23 +22,19 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.components.buttons.IconTextButton
 import kanti.testonlineshop.ui.components.buttons.TagButton
 import kanti.testonlineshop.ui.components.card.ProductCard
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModel
-import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.SortType
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.TagUiState
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.title1
-import kanti.testonlineshop.ui.theme.title2
 
 @Composable
 private fun TopAppBar(
@@ -122,59 +116,19 @@ fun CatalogScreen(
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box() {
-            var expandMenu by rememberSaveable { mutableStateOf(false) }
+        Box {
+            val expandMenuState = rememberSaveable { mutableStateOf(false) }
             TopAppBar(
-                expandMenu = expandMenu,
+                expandMenu = expandMenuState.value,
                 changeExpandMenu = { newExpandMenuState ->
-                    expandMenu = newExpandMenuState
+                    expandMenuState.value = newExpandMenuState
                 }
             )
 
-            DropdownMenu(
-                expanded = expandMenu,
-                onDismissRequest = { expandMenu = false },
-                offset = DpOffset(x = 8.dp, y = 0.dp)
-            ) {
-                DropdownMenuItem(
-                    onClick = {
-                        viewModel.setSort(SortType.Rating)
-                        expandMenu = false
-                    }
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.sort_rating),
-                        style = MaterialTheme.typography.title2,
-                        color = MaterialTheme.colors.textBlack
-                    )
-                }
-
-                DropdownMenuItem(
-                    onClick = {
-                        viewModel.setSort(SortType.PriceReduction)
-                        expandMenu = false
-                    }
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.sort_price_reduction),
-                        style = MaterialTheme.typography.title2,
-                        color = MaterialTheme.colors.textBlack
-                    )
-                }
-
-                DropdownMenuItem(
-                    onClick = {
-                        viewModel.setSort(SortType.PriceIncrease)
-                        expandMenu = false
-                    }
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.sort_price_increase),
-                        style = MaterialTheme.typography.title2,
-                        color = MaterialTheme.colors.textBlack
-                    )
-                }
-            }
+            SortMenu(
+                expandMenuState = expandMenuState,
+                setSort = { viewModel.setSort(it) }
+            )
         }
 
         val tags by viewModel.tags.collectAsState()
