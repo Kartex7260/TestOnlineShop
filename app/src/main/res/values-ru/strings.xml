@@ -28,4 +28,5 @@
     <string name="product_description_more_detail">Подробнее</string>
     <string name="product_detail_specifications">Характеристики</string>
     <string name="product_detail_composition">Состав</string>
+    <string name="product_detail_add_to_cart">Добавить в корзину</string>
 </resources>
