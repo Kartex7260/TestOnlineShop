@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="product_detail_available">
+        <item quantity="one">Available to order %d piece</item>
+        <item quantity="two">Available to order %d piece</item>
+        <item quantity="few">Available to order %d pieces</item>
+        <item quantity="many">Available to order %d pieces</item>
+        <item quantity="other">Available to order %d pieces</item>
+    </plurals>
+    
+    <plurals name="product_feedback_count">
+        <item quantity="one">%d review</item>
+        <item quantity="two">%d review</item>
+        <item quantity="few">%d review</item>
+        <item quantity="many">%d review</item>
+        <item quantity="other">$d reviews</item>
+    </plurals>
+</resources>

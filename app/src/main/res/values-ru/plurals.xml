@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="product_detail_available">
+        <item quantity="one">Доступно для заказа %d штука</item>
+        <item quantity="few">Доступно для заказа %d штуки</item>
+        <item quantity="many">Доступно для заказа %d штук</item>
+        <item quantity="other">Доступно для заказа %d штук</item>
+    </plurals>
+
+    <plurals name="product_feedback_count">
+        <item quantity="one">%d отзыв</item>
+        <item quantity="few">%d отзыва</item>
+        <item quantity="many">%d отзывов</item>
+        <item quantity="other">%d отзывов</item>
+    </plurals>
+</resources>
