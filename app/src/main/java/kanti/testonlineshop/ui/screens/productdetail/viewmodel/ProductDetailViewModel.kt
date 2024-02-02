@@ -11,5 +11,7 @@ interface ProductDetailViewModel {
 
     fun loadProduct(productId: String) {}
 
+    fun changeFavourite(productId: String, favourite: Boolean) {}
+
     companion object : ProductDetailViewModel
 }

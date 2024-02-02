@@ -7,8 +7,12 @@ import kanti.testonlineshop.data.ImageLoader
 import kanti.testonlineshop.data.model.product.Product
 import kanti.testonlineshop.data.model.product.ProductRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,17 +21,38 @@ class ProductDetailViewModelImpl @Inject constructor(
     private val productRepository: ProductRepository
 ) : ViewModel(), ProductDetailViewModel {
 
-    private val _product = MutableStateFlow(Product())
-    override val product: StateFlow<Product> = _product.asStateFlow()
+    private val _updateProduct = MutableStateFlow(Any())
+    private val _product = MutableStateFlow<String?>(null)
+    override val product: StateFlow<Product> = _product
+        .combine(_updateProduct) { productId, _ -> productId }
+        .map { productId ->
+            if (productId == null)
+                return@map null
+            productRepository.getProduct(productId)
+        }
+        .filterNotNull()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Lazily,
+            initialValue = Product()
+        )
 
-    private val _images = MutableStateFlow(listOf<Any>())
-    override val images: StateFlow<List<Any>> = _images.asStateFlow()
+    override val images: StateFlow<List<Any>> = product
+        .map { product -> ImageLoader.imageFromId(product.id) }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Lazily,
+            initialValue = listOf()
+        )
 
     override fun loadProduct(productId: String) {
+        _product.value = productId
+    }
+
+    override fun changeFavourite(productId: String, favourite: Boolean) {
         viewModelScope.launch {
-            val product = productRepository.getProduct(productId) ?: return@launch
-            _images.value = ImageLoader.imageFromId(productId)
-            _product.value = product
+            productRepository.setFavourite(productId, favourite)
+            _updateProduct.value = Any()
         }
     }
 }

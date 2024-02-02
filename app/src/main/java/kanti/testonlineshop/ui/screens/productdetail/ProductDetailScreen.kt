@@ -95,7 +95,10 @@ fun ProductDetailScreen(
                 .padding(bottom = paddingBottom + verticalPadding)
                 .padding(paddingValues = PaddingValues()),
             product = product,
-            images = images
+            images = images,
+            onChangeFavourite = { favourite ->
+                viewModel.changeFavourite(product.id, favourite)
+            }
         )
         val destiny = LocalDensity.current
         PriceNormalButton(
