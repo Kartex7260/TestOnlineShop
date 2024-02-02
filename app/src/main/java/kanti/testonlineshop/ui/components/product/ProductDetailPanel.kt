@@ -1,9 +1,7 @@
 package kanti.testonlineshop.ui.components.product
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -47,27 +46,24 @@ import kanti.testonlineshop.ui.theme.title1
 @Composable
 fun ProductDetailPanel(
     modifier: Modifier = Modifier,
-    scrollState: ScrollableState = rememberScrollState(),
+    scrollState: ScrollState = rememberScrollState(),
     product: Product,
     images: List<Any> = listOf(),
     onChangeFavourite: (Boolean) -> Unit = {}
 ) = Column(
     modifier = modifier
-        .scrollable(
-            state = scrollState,
-            orientation = Orientation.Vertical
-        )
+        .verticalScroll(scrollState)
 ) {
     Box {
         LargeProductImages(
             modifier = Modifier
-                .height(394.dp),
+                .height(410.dp),
             images = images
         )
         FavouriteButton(
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .padding(end = 16.dp)
+                .padding(top = 16.dp, end = 16.dp)
                 .size(24.dp),
             favourite = product.favourite,
             onChangeFavourite = onChangeFavourite
@@ -203,6 +199,7 @@ fun ProductDetailPanel(
             textExpanded = stringResource(id = R.string.product_description_hide),
             textCollapsed = stringResource(id = R.string.product_description_more_detail)
         )
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 

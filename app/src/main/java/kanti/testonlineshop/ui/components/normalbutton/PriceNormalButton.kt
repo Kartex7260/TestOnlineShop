@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kanti.testonlineshop.data.model.Price
 import kanti.testonlineshop.ui.components.PastPriceText
 import kanti.testonlineshop.ui.theme.backgroundLightPink
 import kanti.testonlineshop.ui.theme.backgroundPink
@@ -25,10 +26,8 @@ import kanti.testonlineshop.ui.theme.textWhite
 @Composable
 fun PriceNormalButton(
     modifier: Modifier = Modifier,
-    price: String = "000",
-    discount: String = "000",
+    price: Price,
     rightText: String = "Label",
-    currency: String = "₽",
     enabled: Boolean = true,
     onClick: () -> Unit = {}
 ) = Button(
@@ -46,6 +45,10 @@ fun PriceNormalButton(
     contentPadding = PaddingValues(
         start = 16.dp,
         end = 16.dp
+    ),
+    elevation = ButtonDefaults.elevation(
+        defaultElevation = 0.dp,
+        pressedElevation = 0.dp
     )
 ) {
     Row(
@@ -53,12 +56,12 @@ fun PriceNormalButton(
         modifier = Modifier.weight(1f)
     ) {
         Text(
-            text = price + currency,
+            text = "${price.priceWithDiscount} ${price.unit}",
             style = MaterialTheme.typography.button2
         )
         Spacer(modifier = Modifier.width(9.dp))
         PastPriceText(
-            text = discount + currency,
+            text = "${price.price} ${price.unit}",
             color = if (enabled) MaterialTheme.colors.textLightPink
             else MaterialTheme.colors.textWhite
         )
@@ -76,5 +79,6 @@ fun PriceNormalButton(
 @Composable
 fun PreviewPriceNormalButton() {
     PriceNormalButton(
+        price = Price()
     )
 }
