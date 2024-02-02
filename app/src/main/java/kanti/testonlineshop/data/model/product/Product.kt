@@ -16,6 +16,7 @@ data class Product(
 
     val tags: List<String> = listOf("Tag"),
     val available: Int = 100,
+    val description: String = "",
 
     val info: List<Info> = listOf(Info()),
 

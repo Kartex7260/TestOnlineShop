@@ -25,6 +25,7 @@ private fun ProductDTO.toProduct(): Product {
 
         tags = tags,
         available = available,
+        description = description,
 
         info = info.map { it.toInfo() },
         ingredients = ingredients,

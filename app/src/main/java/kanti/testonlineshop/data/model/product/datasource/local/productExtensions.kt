@@ -20,6 +20,7 @@ fun ProductEntity.toProduct(): Product {
 
         tags = tags.toTags(),
         available = available,
+        description = description,
 
         info = info.toInfo(),
 
@@ -39,6 +40,7 @@ fun Product.toProductEntity(): ProductEntity {
 
         tags = tags.toTagStg(),
         available = available,
+        description = description,
 
         info = info.toInfoStg(),
 

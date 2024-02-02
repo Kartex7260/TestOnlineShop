@@ -14,6 +14,7 @@ data class ProductEntity(
 
     val tags: String = "",
     val available: Int = 100,
+    val description: String = "",
 
     val info: String = "",
 
