@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 interface ProductDetailViewModel {
 
     val product: StateFlow<Product> get() = MutableStateFlow(Product())
+    val images: StateFlow<List<Any>> get() = MutableStateFlow(listOf())
 
     fun loadProduct(productId: String) {}
 

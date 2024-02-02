@@ -57,7 +57,8 @@ fun ProductDetailPanel(
     Box {
         LargeProductImages(
             modifier = Modifier
-                .height(410.dp),
+                .height(410.dp)
+                .fillMaxWidth(),
             images = images
         )
         FavouriteButton(

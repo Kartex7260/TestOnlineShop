@@ -85,6 +85,8 @@ fun ProductDetailScreen(
 
     Box {
         val product by viewModel.product.collectAsState()
+        val images by viewModel.images.collectAsState()
+
         var paddingBottom by remember { mutableStateOf(0.dp) }
         val verticalPadding = 8.dp
         ProductDetailPanel(
@@ -92,7 +94,8 @@ fun ProductDetailScreen(
                 .fillMaxSize()
                 .padding(bottom = paddingBottom + verticalPadding)
                 .padding(paddingValues = PaddingValues()),
-            product = product
+            product = product,
+            images = images
         )
         val destiny = LocalDensity.current
         PriceNormalButton(
