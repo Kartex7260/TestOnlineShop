@@ -112,7 +112,8 @@ fun ProductDetailPanel(
         Text(
             text = pluralStringResource(
                 id = R.plurals.product_detail_available,
-                count = product.available
+                count = product.available,
+                formatArgs = arrayOf(product.available)
             ),
             style = MaterialTheme.typography.text1,
             color = MaterialTheme.colors.textGrey

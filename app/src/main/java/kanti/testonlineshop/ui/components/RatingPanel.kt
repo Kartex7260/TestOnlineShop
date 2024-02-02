@@ -86,7 +86,8 @@ fun RatingPanel(
             modifier = Modifier.offset(x = 0.dp, y = (-1).dp),
             text = pluralStringResource(
                 id = R.plurals.product_feedback_count,
-                count = feedback.count
+                count = feedback.count,
+                formatArgs = arrayOf(feedback.count)
             ),
             style = textStyle,
             color = color
