@@ -8,13 +8,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.screens.main.cart.CartScreen
-import kanti.testonlineshop.ui.screens.main.catalog.CatalogScreen
+import kanti.testonlineshop.ui.screens.main.catalog.CatalogRootScreen
 import kanti.testonlineshop.ui.screens.main.main.MainScreen
 import kanti.testonlineshop.ui.screens.main.profile.ProfileScreen
 import kanti.testonlineshop.ui.screens.main.promo.PromoScreen
@@ -50,16 +49,15 @@ fun navItems() = listOf(
 
 @Composable
 fun SuperScreen(
-    startDestination: String? = null,
-    superNavController: NavController = rememberNavController()
+    startDestination: String? = null
 ) {
-    val currentNavController = rememberNavController()
+    val navController = rememberNavController()
     Column {
         val context = LocalContext.current
         val navBottomItems = navItems()
         NavHost(
             modifier = Modifier.weight(1f),
-            navController = currentNavController,
+            navController = navController,
             startDestination = startDestination ?: stringResource(id = R.string.nav_main_main)
         ) {
             composable(
@@ -71,13 +69,7 @@ fun SuperScreen(
             composable(
                 route = context.getString(R.string.nav_main_catalog)
             ) {
-                CatalogScreen(
-                    toProductScreen = { productId ->
-                        superNavController.navigate(
-                            route = "${context.getString(R.string.nav_product_detail)}/$productId"
-                        )
-                    }
-                )
+                CatalogRootScreen()
             }
 
             composable(
@@ -100,7 +92,7 @@ fun SuperScreen(
         }
         BottomNavigationBar(
             modifier = Modifier.fillMaxWidth(),
-            navController = currentNavController,
+            navController = navController,
             items = navBottomItems
         )
     }

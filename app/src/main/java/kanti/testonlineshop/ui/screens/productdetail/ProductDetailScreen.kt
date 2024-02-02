@@ -24,6 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LifecycleStartEffect
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.components.buttons.IconButton
 import kanti.testonlineshop.ui.components.normalbutton.PriceNormalButton
@@ -50,7 +52,8 @@ private fun TopAppBar(
         IconButton(
             modifier = Modifier.size(24.dp),
             iconId = R.drawable.back_arrow,
-            tint = MaterialTheme.colors.elementBlack
+            tint = MaterialTheme.colors.elementBlack,
+            onClick = onBack
         )
 
         IconButton(
@@ -64,6 +67,7 @@ private fun TopAppBar(
 @Composable
 fun ProductDetailScreen(
     modifier: Modifier = Modifier,
+    navController: NavController = rememberNavController(),
     viewModel: ProductDetailViewModel = hiltViewModel<ProductDetailViewModelImpl>(),
     productId: String? = null
 ) = Column(
@@ -75,7 +79,9 @@ fun ProductDetailScreen(
         onStopOrDispose {  }
     }
 
-    TopAppBar()
+    TopAppBar(
+        onBack = { navController.popBackStack() }
+    )
 
     Box {
         val product by viewModel.product.collectAsState()

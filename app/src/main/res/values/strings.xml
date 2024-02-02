@@ -1,10 +1,11 @@
 <resources>
     <string name="nav_login" translatable="false">login</string>
     <string name="nav_main" translatable="false">main</string>
-    <string name="nav_product_detail" translatable="false">product_detail</string>
 
     <string name="nav_main_main" translatable="false">main_main</string>
     <string name="nav_main_catalog" translatable="false">main_catalog</string>
+    <string name="nav_main_catalog_root" translatable="false">main_catalog_root</string>
+    <string name="nav_main_catalog_product" translatable="false">main_catalog_product</string>
     <string name="nav_main_cart" translatable="false">main_cart</string>
     <string name="nav_main_promo" translatable="false">main_promo</string>
     <string name="nav_main_profile" translatable="false">main_profile</string>
