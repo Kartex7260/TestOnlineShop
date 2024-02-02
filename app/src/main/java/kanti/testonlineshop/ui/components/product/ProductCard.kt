@@ -27,12 +27,10 @@ import kanti.testonlineshop.data.model.product.Product
 import kanti.testonlineshop.ui.components.DiscountTag
 import kanti.testonlineshop.ui.components.PastPriceText
 import kanti.testonlineshop.ui.components.RatingTag
-import kanti.testonlineshop.ui.components.buttons.IconButton
 import kanti.testonlineshop.ui.components.buttons.PlusButton
 import kanti.testonlineshop.ui.theme.backgroundLightGrey
 import kanti.testonlineshop.ui.theme.backgroundWhite
 import kanti.testonlineshop.ui.theme.caption1
-import kanti.testonlineshop.ui.theme.elementPink
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.textGrey
 import kanti.testonlineshop.ui.theme.title2
@@ -65,17 +63,16 @@ fun ProductCard(
                 modifier = Modifier.height(144.dp),
                 images = images
             )
-            IconButton(
+            FavouriteButton(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(
                         top = 6.dp,
                         end = 6.dp
                     ),
-                iconId = if (product.favourite) R.drawable.heart_full
-                else R.drawable.heart_empty,
-                tint = MaterialTheme.colors.elementPink
-            ) { onFavouriteClick(!product.favourite) }
+                favourite = product.favourite,
+                onChangeFavourite = { onFavouriteClick(!product.favourite) }
+            )
         }
 
         // PAST PRICE
