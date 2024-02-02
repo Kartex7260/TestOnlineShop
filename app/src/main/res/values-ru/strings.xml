@@ -23,4 +23,9 @@
     <string name="tag_mask_name">Маски</string>
     <string name="catalog_topbar_filters">Фильтры</string>
     <string name="sort">Сортировка</string>
+    <string name="product_detail_description">Описание</string>
+    <string name="product_description_hide">Скрыть</string>
+    <string name="product_description_more_detail">Подробнее</string>
+    <string name="product_detail_specifications">Характеристики</string>
+    <string name="product_detail_composition">Состав</string>
 </resources>

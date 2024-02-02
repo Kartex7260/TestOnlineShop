@@ -38,4 +38,9 @@
     <string name="tag_mask_data" translatable="false">mask</string>
     <string name="catalog_topbar_filters">Filters</string>
     <string name="sort">Sorting</string>
+    <string name="product_detail_description">Description</string>
+    <string name="product_description_hide">Hide</string>
+    <string name="product_description_more_detail">More detailed</string>
+    <string name="product_detail_specifications">Specifications</string>
+    <string name="product_detail_composition">Composition</string>
 </resources>
