@@ -62,9 +62,7 @@ fun TabRow(
         items.forEachIndexed { index, item ->
             Tab(
                 modifier = Modifier
-                    .weight(weight)
-                    .fillMaxHeight()
-                    .padding(top = 3.dp, bottom = 3.dp),
+                    .weight(weight),
                 text = item,
                 isSelected = selected == index,
                 onClick = { onSelected(index) }
@@ -84,6 +82,7 @@ private fun Tab(
     onClick: () -> Unit = {}
 ) = Box(
     modifier = modifier
+        .fillMaxHeight()
         .clip(RoundedCornerShape(8.dp))
         .background(
             shape = RoundedCornerShape(8.dp),

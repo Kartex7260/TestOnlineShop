@@ -43,7 +43,8 @@ fun ProfileRootScreen(
         route = context.getString(R.string.nav_main_profile_favourite)
     ) {
         FavouritesScreen(
-            toProductScreen = { navController.navigate(route = context.getString(R.string.nav_main_profile_product) + "/$it") }
+            toProductScreen = { navController.navigate(route = context.getString(R.string.nav_main_profile_product) + "/$it") },
+            back = { navController.popBackStack() }
         )
     }
 

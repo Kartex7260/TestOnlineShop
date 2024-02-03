@@ -81,6 +81,7 @@ private fun TopAppBar(
 @Composable
 fun FavouritesScreen(
     modifier: Modifier = Modifier,
+    back: () -> Unit = {},
     toProductScreen: (String) -> Unit = {}
 ) = Column(
     modifier = modifier
@@ -88,7 +89,8 @@ fun FavouritesScreen(
     val context = LocalContext.current
 
     TopAppBar(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        back = back
     )
     Spacer(modifier = Modifier.height(4.dp))
 
