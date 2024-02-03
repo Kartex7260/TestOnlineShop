@@ -15,7 +15,7 @@ import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.screens.main.cart.CartScreen
 import kanti.testonlineshop.ui.screens.main.catalog.CatalogRootScreen
 import kanti.testonlineshop.ui.screens.main.main.MainScreen
-import kanti.testonlineshop.ui.screens.main.profile.ProfileScreen
+import kanti.testonlineshop.ui.screens.main.profile.ProfileRootScreen
 import kanti.testonlineshop.ui.screens.main.promo.PromoScreen
 
 @Composable
@@ -87,7 +87,7 @@ fun SuperScreen(
             composable(
                 route = context.getString(R.string.nav_main_profile)
             ) {
-                ProfileScreen()
+                ProfileRootScreen()
             }
         }
         BottomNavigationBar(

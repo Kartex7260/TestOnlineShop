@@ -29,4 +29,11 @@
     <string name="product_detail_specifications">Характеристики</string>
     <string name="product_detail_composition">Состав</string>
     <string name="product_detail_add_to_cart">Добавить в корзину</string>
+    <string name="profile_personal_account">Личный кабинет</string>
+    <string name="profile_favourites">Избранное</string>
+    <string name="profile_shops">Магазины</string>
+    <string name="profile_feedback">Обратная связь</string>
+    <string name="profile_offer">Оферта</string>
+    <string name="profile_return_product">Возврат товара</string>
+    <string name="profile_logout">Выйти</string>
 </resources>
