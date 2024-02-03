@@ -30,6 +30,8 @@ import kanti.testonlineshop.ui.components.buttons.IconButton
 import kanti.testonlineshop.ui.screens.main.profile.favourites.brands.FavouriteBrandsScreen
 import kanti.testonlineshop.ui.screens.main.profile.favourites.products.FavouriteProductsScreen
 import kanti.testonlineshop.ui.theme.elementBlack
+import kanti.testonlineshop.ui.theme.textBlack
+import kanti.testonlineshop.ui.theme.title1
 
 private data class TabItem(
     val label: String,
@@ -73,7 +75,9 @@ private fun TopAppBar(
         Spacer(modifier = Modifier.width(28.dp))
         Text(
             modifier = Modifier,
-            text = stringResource(id = R.string.profile_favourites)
+            text = stringResource(id = R.string.profile_favourites),
+            style = MaterialTheme.typography.title1,
+            color = MaterialTheme.colors.textBlack
         )
     }
 }
