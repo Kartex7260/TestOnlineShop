@@ -12,12 +12,14 @@ import kanti.testonlineshop.ui.screens.main.profile.favourites.products.viewmode
 @Composable
 fun FavouriteProductsScreen(
     modifier: Modifier = Modifier,
-    viewModel: FavouriteProductsViewModel = hiltViewModel<FavouriteProductsViewModelImpl>()
+    viewModel: FavouriteProductsViewModel = hiltViewModel<FavouriteProductsViewModelImpl>(),
+    toProductScreen: (String) -> Unit = {},
 ) = ProductsGrid(
     modifier = modifier,
     items = viewModel.favouriteProducts.collectAsState().value,
     getImages = { viewModel.getImages(it) },
-    setFavourite = viewModel::setFavourite
+    setFavourite = viewModel::setFavourite,
+    toProductScreen = toProductScreen
 )
 
 @Preview

@@ -6,11 +6,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.screens.main.profile.favourites.FavouritesScreen
+import kanti.testonlineshop.ui.screens.productdetail.ProductDetailScreen
 
 @Composable
 fun ProfileRootScreen(
@@ -39,12 +42,20 @@ fun ProfileRootScreen(
     composable(
         route = context.getString(R.string.nav_main_profile_favourite)
     ) {
-        FavouritesScreen()
+        FavouritesScreen(
+            toProductScreen = { navController.navigate(route = context.getString(R.string.nav_main_profile_product) + "/$it") }
+        )
     }
 
+    val profileArg1 = "productId"
     composable(
-        route = context.getString(R.string.nav_main_profile_product)
+        route = "${context.getString(R.string.nav_main_profile_product)}/{$profileArg1}",
+        arguments = listOf(navArgument(name = profileArg1) { type = NavType.StringType })
     ) {
+        ProductDetailScreen(
+            navController = navController,
+            productId = it.arguments?.getString(profileArg1)
+        )
     }
 }
 

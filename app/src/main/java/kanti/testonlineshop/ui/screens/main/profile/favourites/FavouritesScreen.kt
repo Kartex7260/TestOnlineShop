@@ -80,7 +80,8 @@ private fun TopAppBar(
 
 @Composable
 fun FavouritesScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    toProductScreen: (String) -> Unit = {}
 ) = Column(
     modifier = modifier
 ) {
@@ -122,7 +123,8 @@ fun FavouritesScreen(
     ) {
         composable(route = context.getString(R.string.nav_favourites_products)) {
             FavouriteProductsScreen(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                toProductScreen = toProductScreen
             )
         }
 
