@@ -110,7 +110,8 @@ fun ProfileScreen(
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(color = MaterialTheme.colors.elementPink)
                     )
-                }
+                },
+                onClick = toFavourite
             )
             Spacer(modifier = Modifier.height(8.dp))
 
