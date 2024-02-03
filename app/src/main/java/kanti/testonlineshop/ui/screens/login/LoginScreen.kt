@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -67,9 +68,11 @@ fun LoginScreen(
                 is LoginResult.Register -> {
                     navigate(context.getString(R.string.nav_main_main))
                 }
+
                 is LoginResult.Success -> {
                     navigate(context.getString(R.string.nav_main_catalog))
                 }
+
                 is LoginResult.InvalidCredentials -> {
                     Toast.makeText(
                         context,
@@ -116,7 +119,10 @@ fun LoginScreen(
                 value = name.text,
                 isError = !name.valid,
                 onValueChanged = { newName -> viewModel.changeName(newName) },
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                keyboardOptions = KeyboardOptions(
+                    capitalization = KeyboardCapitalization.Sentences,
+                    imeAction = ImeAction.Next
+                ),
                 placeholder = stringResource(id = R.string.name)
             )
 
@@ -132,7 +138,10 @@ fun LoginScreen(
                 value = lastName.text,
                 isError = !lastName.valid,
                 onValueChanged = { newLastName -> viewModel.changeLastName(newLastName) },
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                keyboardOptions = KeyboardOptions(
+                    capitalization = KeyboardCapitalization.Sentences,
+                    imeAction = ImeAction.Next
+                ),
                 placeholder = stringResource(id = R.string.last_name)
             )
 
