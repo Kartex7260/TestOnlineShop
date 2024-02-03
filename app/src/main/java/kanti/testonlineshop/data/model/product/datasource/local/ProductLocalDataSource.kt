@@ -16,6 +16,8 @@ interface ProductLocalDataSource {
 
     suspend fun getFavouriteData(): List<FavouriteData> { return listOf() }
 
+    suspend fun getFavouriteCount(): Int
+
     suspend fun setFavouriteData(favouriteData: List<FavouriteData>) {}
 
     suspend fun setFavourite(productId: String, favourite: Boolean) {}

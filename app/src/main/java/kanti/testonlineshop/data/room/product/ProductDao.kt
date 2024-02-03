@@ -26,6 +26,9 @@ interface ProductDao {
     @Query("SELECT id, favourite FROM products WHERE favourite = 1")
     suspend fun getFavouriteData(): List<FavouriteData>
 
+    @Query("SELECT COUNT(*) FROM products WHERE favourite = 1")
+    suspend fun getFavouriteCount(): Int
+
     @Update(entity = ProductEntity::class)
     suspend fun setFavouriteData(favouriteData: List<FavouriteData>)
 

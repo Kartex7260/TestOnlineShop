@@ -12,4 +12,6 @@ interface ProductRepository {
     suspend fun loadFromRemote() {}
 
     suspend fun setFavourite(productId: String, favourite: Boolean) {}
+
+    suspend fun getFavouritesCount(): Int { return 0 }
 }

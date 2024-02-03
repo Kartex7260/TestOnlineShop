@@ -29,4 +29,8 @@ class ProductRepositoryImpl @Inject constructor(
     override suspend fun setFavourite(productId: String, favourite: Boolean) {
         localDataSource.setFavourite(productId, favourite)
     }
+
+    override suspend fun getFavouritesCount(): Int {
+        return localDataSource.getFavouriteCount()
+    }
 }

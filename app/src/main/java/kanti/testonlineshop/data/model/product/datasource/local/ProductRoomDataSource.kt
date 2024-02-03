@@ -31,6 +31,10 @@ class ProductRoomDataSource @Inject constructor(
         return productDao.getFavouriteData()
     }
 
+    override suspend fun getFavouriteCount(): Int {
+        return productDao.getFavouriteCount()
+    }
+
     override suspend fun setFavouriteData(favouriteData: List<FavouriteData>) {
         productDao.setFavouriteData(favouriteData)
     }

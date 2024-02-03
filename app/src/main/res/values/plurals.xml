@@ -15,4 +15,12 @@
         <item quantity="many">%d review</item>
         <item quantity="other">$d reviews</item>
     </plurals>
+
+    <plurals name="profile_favourite_count">
+        <item quantity="one">%d product</item>
+        <item quantity="two">%d products</item>
+        <item quantity="few">%d products</item>
+        <item quantity="many">%d products</item>
+        <item quantity="other">$d products</item>
+    </plurals>
 </resources>

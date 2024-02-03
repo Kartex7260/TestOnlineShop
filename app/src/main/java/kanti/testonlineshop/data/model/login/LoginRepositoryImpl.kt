@@ -13,6 +13,8 @@ class LoginRepositoryImpl @Inject constructor(
     private val _loginResult = MutableSharedFlow<LoginResult>()
     override val loginResult: Flow<LoginResult> = _loginResult.asSharedFlow()
 
+    override val user: Flow<User?> = localDataSource.user
+
     override suspend fun login(name: String, lastName: String, phone: String) {
         if (localDataSource.isRegistered()) {
             val res = localDataSource.login(name, lastName, phone)

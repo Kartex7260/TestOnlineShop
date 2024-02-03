@@ -14,20 +14,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.login.User
 import kanti.testonlineshop.ui.components.card.AccountCard
 import kanti.testonlineshop.ui.components.panelbutton.PanelButton
 import kanti.testonlineshop.ui.components.panelbutton.PanelButtonDefaults
 import kanti.testonlineshop.ui.screens.main.profile.viewmodel.ProfileViewModel
+import kanti.testonlineshop.ui.screens.main.profile.viewmodel.ProfileViewModelImpl
 import kanti.testonlineshop.ui.theme.backgroundLightGrey
 import kanti.testonlineshop.ui.theme.elementBlack
 import kanti.testonlineshop.ui.theme.elementDarkGrey
@@ -58,7 +63,7 @@ private fun TopAppBar(
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
-    viewModel: ProfileViewModel = ProfileViewModel,
+    viewModel: ProfileViewModel = hiltViewModel<ProfileViewModelImpl>(),
     toFavourite: () -> Unit = {},
     logout: () -> Unit = {}
 ) = Column(
@@ -76,16 +81,23 @@ fun ProfileScreen(
             val buttonModifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
+
+            val user by viewModel.user.collectAsState()
             AccountButton(
                 modifier = buttonModifier,
-                user = User("Name", "LastName", "+7 XXX-XXX-XX-XX") // TODO: data from vm
+                user = user
             )
             Spacer(modifier = Modifier.height(24.dp))
 
+            val favouritesCount by viewModel.favouritesCount.collectAsState()
             NavigateButton(
                 modifier = buttonModifier,
                 title = stringResource(id = R.string.profile_favourites),
-                subtitle = null, // TODO: data from vm
+                subtitle = pluralStringResource(
+                    id = R.plurals.profile_favourite_count,
+                    count = favouritesCount,
+                    formatArgs = arrayOf(favouritesCount)
+                ),
                 leadingIcon = {
                     Image(
                         painter = painterResource(id = R.drawable.heart_empty),
@@ -172,7 +184,10 @@ private fun AccountButton(
 ) = AccountCard(
     modifier = modifier,
     title = "${user.name} ${user.lastName}",
-    subtitle = user.phone,
+    subtitle = run {
+        val regex = """(\d{3})(\d{3})(\d{2})(\d{2})""".toRegex()
+        regex.replace(user.phone, "+7 $1 $2 $3 $4")
+    },
     leadingIcon = {
         Image(
             painter = painterResource(id = R.drawable.profile),
