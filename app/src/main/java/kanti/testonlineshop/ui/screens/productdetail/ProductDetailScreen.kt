@@ -3,7 +3,6 @@ package kanti.testonlineshop.ui.screens.productdetail
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -88,13 +87,12 @@ fun ProductDetailScreen(
         val product by viewModel.product.collectAsState()
         val images by viewModel.images.collectAsState()
 
-        var paddingBottom by remember { mutableStateOf(0.dp) }
+        var buttonHeight by remember { mutableStateOf(0.dp) }
         val verticalPadding = 8.dp
         ProductDetailPanel(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = paddingBottom + verticalPadding)
-                .padding(paddingValues = PaddingValues()),
+                .padding(bottom = buttonHeight + verticalPadding),
             product = product,
             images = images,
             onChangeFavourite = { favourite ->
@@ -110,7 +108,7 @@ fun ProductDetailScreen(
                     horizontal = 16.dp
                 )
                 .onGloballyPositioned {
-                    paddingBottom = with(destiny) {
+                    buttonHeight = with(destiny) {
                         it.size.height.toDp()
                     }
                 },
@@ -124,6 +122,7 @@ fun ProductDetailScreen(
 @Composable
 fun PreviewProductScreen() {
     ProductDetailScreen(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        viewModel = ProductDetailViewModel
     )
 }
