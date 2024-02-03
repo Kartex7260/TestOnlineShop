@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kanti.testonlineshop.R
+import kanti.testonlineshop.ui.screens.main.profile.favourites.FavouritesScreen
 
 @Composable
 fun ProfileRootScreen(
@@ -38,6 +39,7 @@ fun ProfileRootScreen(
     composable(
         route = context.getString(R.string.nav_main_profile_favourite)
     ) {
+        FavouritesScreen()
     }
 
     composable(

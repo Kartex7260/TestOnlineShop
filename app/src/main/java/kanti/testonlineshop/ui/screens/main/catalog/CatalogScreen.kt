@@ -11,10 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyGridState
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
@@ -22,7 +18,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -35,7 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.components.buttons.IconTextButton
 import kanti.testonlineshop.ui.components.buttons.TagButton
-import kanti.testonlineshop.ui.components.product.ProductCard
+import kanti.testonlineshop.ui.components.product.ProductsGrid
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModel
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.CatalogViewModelImpl
 import kanti.testonlineshop.ui.screens.main.catalog.viewmodel.TagUiState
@@ -165,34 +160,19 @@ fun CatalogScreen(
                 )
             }
         } else {
-            val lazyGridState = rememberSaveable(
-                inputs = arrayOf(currentSort, currentTag),
-                saver = LazyGridState.Saver
-            ) { LazyGridState(0, 0) }
-            LazyVerticalGrid(
+            ProductsGrid(
                 modifier = Modifier.fillMaxSize(),
-                state = lazyGridState,
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(7.dp),
-                horizontalArrangement = Arrangement.spacedBy(7.dp),
-                columns = GridCells.Fixed(2)
-            ) {
-                items(items = products) { product ->
-                    key(product.id) {
-                        val images by viewModel.getImages(product.id)
-                            .collectAsState(initial = listOf())
-                        ProductCard(
-                            product = product,
-                            images = images,
-                            onFavouriteClick = {
-                                viewModel.setFavourite(product.id, it)
-                            }
-                        ) {
-                            toProductScreen(product.id)
-                        }
-                    }
-                }
-            }
+                items = products,
+                getImages = { viewModel.getImages(it) },
+                setFavourite = { productId, favourite ->
+                    viewModel.setFavourite(
+                        productId,
+                        favourite
+                    )
+                },
+                toProductScreen = toProductScreen,
+                inputs = arrayOf(currentSort, currentTag)
+            )
         }
     }
 }

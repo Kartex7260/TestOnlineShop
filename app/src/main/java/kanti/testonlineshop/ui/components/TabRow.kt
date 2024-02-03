@@ -42,7 +42,7 @@ import kanti.testonlineshop.ui.theme.textGrey
 import kanti.testonlineshop.ui.theme.title4
 
 @Composable
-fun DoubleTabRow(
+fun TabRow(
     modifier: Modifier = Modifier,
     items: List<String>,
     selected: Int = 0,
@@ -126,11 +126,11 @@ private fun Tab(
 
 @Preview
 @Composable
-fun PreviewDoubleTabRow(
+fun PreviewTabRow(
     @PreviewParameter(PreviewDoubleTabRowItems::class) items: List<String>
 ) {
     var selected by remember { mutableIntStateOf(0) }
-    DoubleTabRow(
+    TabRow(
         modifier = Modifier
             .height(42.dp)
             .fillMaxWidth(),
