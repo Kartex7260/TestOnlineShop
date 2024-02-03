@@ -30,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.login.User
+import kanti.testonlineshop.ui.components.buttons.IconButton
 import kanti.testonlineshop.ui.components.card.AccountCard
 import kanti.testonlineshop.ui.components.panelbutton.PanelButton
 import kanti.testonlineshop.ui.components.panelbutton.PanelButtonDefaults
@@ -201,7 +202,7 @@ private fun AccountButton(
     title = "${user.name} ${user.lastName}",
     subtitle = run {
         val regex = """(\d{3})(\d{3})(\d{2})(\d{2})""".toRegex()
-        regex.replace(user.phone, "+7 $1 $2 $3 $4")
+        regex.replace(user.phone, "+7 $1 $2-$3-$4")
     },
     leadingIcon = {
         Image(
@@ -211,10 +212,9 @@ private fun AccountButton(
         )
     },
     tailingIcon = {
-        Image(
-            painter = painterResource(id = R.drawable.logout),
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(color = iconColor)
+        IconButton(
+            iconId = R.drawable.logout,
+            tint = iconColor
         )
     },
     onClick = onClick
