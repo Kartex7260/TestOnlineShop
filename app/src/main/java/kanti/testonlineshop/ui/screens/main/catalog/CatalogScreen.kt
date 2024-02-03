@@ -27,6 +27,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import kanti.testonlineshop.R
 import kanti.testonlineshop.ui.components.buttons.IconTextButton
 import kanti.testonlineshop.ui.components.buttons.TagButton
@@ -118,6 +120,10 @@ fun CatalogScreen(
     toProductScreen: (String) -> Unit = {},
     viewModel: CatalogViewModel = hiltViewModel<CatalogViewModelImpl>()
 ) {
+    LifecycleEventEffect(event = Lifecycle.Event.ON_CREATE) {
+        viewModel.loadProducts()
+    }
+
     Column(
         modifier = modifier
             .fillMaxWidth(),

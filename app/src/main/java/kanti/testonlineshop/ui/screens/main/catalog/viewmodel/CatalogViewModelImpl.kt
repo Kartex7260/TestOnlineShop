@@ -113,7 +113,7 @@ class CatalogViewModelImpl @Inject constructor(
     private val _process = MutableStateFlow(false)
     override val process: StateFlow<Boolean> = _process.asStateFlow()
 
-    init {
+    override fun loadProducts() {
         _process.value = true
         viewModelScope.launch {
             productRepository.loadFromRemote()
