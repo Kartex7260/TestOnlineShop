@@ -38,7 +38,17 @@ fun NavGraph(
             arguments = listOf(navArgument(mainArg1) { type = NavType.StringType })
         ) {
             SuperScreen(
-                startDestination = it.arguments?.getString(mainArg1)
+                startDestination = it.arguments?.getString(mainArg1),
+                toLogin = {
+                    navController.navigate(
+                        route = context.getString(R.string.nav_login)
+                    ) {
+                        val route = it.destination.route ?: return@navigate
+                        popUpTo(route = route) {
+                            inclusive = true
+                        }
+                    }
+                }
             )
         }
     }

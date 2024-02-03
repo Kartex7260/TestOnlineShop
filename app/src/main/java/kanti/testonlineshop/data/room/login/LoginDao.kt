@@ -21,4 +21,7 @@ interface LoginDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(login: LoginEntity)
+
+    @Query("DELETE FROM login")
+    suspend fun logout()
 }

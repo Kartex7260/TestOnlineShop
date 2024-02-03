@@ -12,4 +12,6 @@ interface LoginLocalDataSource {
     suspend fun login(name: String, lastName: String, phone: String): Boolean
 
     suspend fun register(name: String, lastName: String, phone: String)
+
+    suspend fun logout()
 }

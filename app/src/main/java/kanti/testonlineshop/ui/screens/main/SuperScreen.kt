@@ -49,7 +49,8 @@ fun navItems() = listOf(
 
 @Composable
 fun SuperScreen(
-    startDestination: String? = null
+    startDestination: String? = null,
+    toLogin: () -> Unit = {}
 ) {
     val navController = rememberNavController()
     Column {
@@ -87,7 +88,9 @@ fun SuperScreen(
             composable(
                 route = context.getString(R.string.nav_main_profile)
             ) {
-                ProfileRootScreen()
+                ProfileRootScreen(
+                    logout = toLogin
+                )
             }
         }
         BottomNavigationBar(

@@ -24,4 +24,8 @@ class LoginRepositoryImpl @Inject constructor(
             _loginResult.emit(LoginResult.Register)
         }
     }
+
+    override suspend fun logout() {
+        localDataSource.logout()
+    }
 }

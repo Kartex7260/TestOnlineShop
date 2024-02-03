@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -42,6 +43,7 @@ import kanti.testonlineshop.ui.theme.elementPink
 import kanti.testonlineshop.ui.theme.textBlack
 import kanti.testonlineshop.ui.theme.textGrey
 import kanti.testonlineshop.ui.theme.title1
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 private fun TopAppBar(
@@ -73,6 +75,10 @@ fun ProfileScreen(
     LifecycleResumeEffect {
         viewModel.updateData()
         onPauseOrDispose {  }
+    }
+
+    LaunchedEffect(key1 = viewModel) {
+        viewModel.onLogout.collectLatest { logout() }
     }
 
     TopAppBar(
@@ -178,7 +184,8 @@ fun ProfileScreen(
             text = stringResource(id = R.string.profile_logout),
             colors = PanelButtonDefaults.colors(
                 backgroundColor = MaterialTheme.colors.backgroundLightGrey
-            )
+            ),
+            onClick = { viewModel.logout() }
         )
     }
 }

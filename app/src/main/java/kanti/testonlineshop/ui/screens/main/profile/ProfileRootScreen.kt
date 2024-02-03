@@ -15,7 +15,8 @@ import kanti.testonlineshop.R
 fun ProfileRootScreen(
     modifier: Modifier = Modifier,
     context: Context = LocalContext.current,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    logout: () -> Unit = {}
 ) = NavHost(
     modifier = modifier,
     navController = navController,
@@ -30,8 +31,7 @@ fun ProfileRootScreen(
                     route = context.getString(R.string.nav_main_profile_favourite)
                 )
             },
-            logout = {
-            }
+            logout = logout
         )
     }
 

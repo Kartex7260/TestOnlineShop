@@ -33,4 +33,8 @@ class LoginRoomDataSource @Inject constructor(
         val loginEntity = LoginEntity(name, lastName, phone)
         loginDao.insert(loginEntity)
     }
+
+    override suspend fun logout() {
+        loginDao.logout()
+    }
 }

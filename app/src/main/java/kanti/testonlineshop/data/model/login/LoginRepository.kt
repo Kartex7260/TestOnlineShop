@@ -9,4 +9,6 @@ interface LoginRepository {
     val user: Flow<User?>
 
     suspend fun login(name: String, lastName: String, phone: String)
+
+    suspend fun logout()
 }
