@@ -7,6 +7,8 @@ interface ProductRepository {
 
     val products: Flow<List<Product>> get() = MutableSharedFlow()
 
+    val favouriteProducts: Flow<List<Product>> get() = MutableSharedFlow()
+
     suspend fun getProduct(productId: String): Product? { return null }
 
     suspend fun loadFromRemote() {}

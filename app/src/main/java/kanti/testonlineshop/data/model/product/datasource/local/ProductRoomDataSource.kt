@@ -15,6 +15,11 @@ class ProductRoomDataSource @Inject constructor(
             products -> products.map { it.toProduct() }
         }
 
+    override val favouriteProducts: Flow<List<Product>>
+        get() = productDao.getAllFavouriteProducts().map {
+            products -> products.map { it.toProduct() }
+        }
+
     override suspend fun getProduct(productId: String): Product? {
         return productDao.getProduct(productId)?.toProduct()
     }

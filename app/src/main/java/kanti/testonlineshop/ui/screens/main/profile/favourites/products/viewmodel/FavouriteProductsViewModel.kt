@@ -11,5 +11,7 @@ interface FavouriteProductsViewModel {
 
     fun getImages(productId: String): Flow<List<Any>> { return MutableStateFlow(listOf()) }
 
+    fun setFavourite(productId: String, favourite: Boolean) {}
+
     companion object : FavouriteProductsViewModel
 }

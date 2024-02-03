@@ -12,6 +12,8 @@ class ProductRepositoryImpl @Inject constructor(
 
     override val products: Flow<List<Product>> = localDataSource.products
 
+    override val favouriteProducts: Flow<List<Product>> = localDataSource.favouriteProducts
+
     override suspend fun getProduct(productId: String): Product? {
         return localDataSource.getProduct(productId)
     }

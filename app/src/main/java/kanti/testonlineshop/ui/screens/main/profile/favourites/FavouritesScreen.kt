@@ -121,7 +121,9 @@ fun FavouritesScreen(
         startDestination = stringResource(id = R.string.nav_favourites_products)
     ) {
         composable(route = context.getString(R.string.nav_favourites_products)) {
-            FavouriteProductsScreen()
+            FavouriteProductsScreen(
+                modifier = Modifier.fillMaxSize()
+            )
         }
 
         composable(route = context.getString(R.string.nav_favourites_brands)) {
