@@ -99,7 +99,8 @@ fun ProfileScreen(
             NavigateButton(
                 modifier = buttonModifier,
                 title = stringResource(id = R.string.profile_favourites),
-                subtitle = pluralStringResource(
+                subtitle = if (favouritesCount == 0) null
+                else pluralStringResource(
                     id = R.plurals.profile_favourite_count,
                     count = favouritesCount,
                     formatArgs = arrayOf(favouritesCount)
