@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.login.User
 import kanti.testonlineshop.ui.components.card.AccountCard
@@ -69,6 +70,11 @@ fun ProfileScreen(
 ) = Column(
     modifier = modifier
 ) {
+    LifecycleResumeEffect {
+        viewModel.updateData()
+        onPauseOrDispose {  }
+    }
+
     TopAppBar(
         modifier = Modifier.fillMaxWidth()
     )

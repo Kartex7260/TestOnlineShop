@@ -9,5 +9,7 @@ interface ProfileViewModel {
     val user: StateFlow<User> get() = MutableStateFlow(User())
     val favouritesCount: StateFlow<Int> get() = MutableStateFlow(0)
 
+    fun updateData() {}
+
     companion object : ProfileViewModel
 }

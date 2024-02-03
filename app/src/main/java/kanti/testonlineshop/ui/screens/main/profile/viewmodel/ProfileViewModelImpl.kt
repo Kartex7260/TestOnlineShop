@@ -33,4 +33,8 @@ class ProfileViewModelImpl @Inject constructor(
     override val favouritesCount: StateFlow<Int> = _updateData
         .map { productRepository.getFavouritesCount() }
         .stateIn(scope = viewModelScope, started = SharingStarted.Lazily, initialValue = 0)
+
+    override fun updateData() {
+        _updateData.value = Any()
+    }
 }
