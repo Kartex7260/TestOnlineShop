@@ -125,8 +125,10 @@ fun ProductDetailPanel(
         )
         Spacer(modifier = Modifier.height(10.dp))
 
-        RatingPanel(feedback = product.feedback)
-        Spacer(modifier = Modifier.height(16.dp))
+        if (product.feedback != null) {
+            RatingPanel(feedback = product.feedback)
+            Spacer(modifier = Modifier.height(16.dp))
+        }
 
         PricePanel(price = product.price)
         Spacer(modifier = Modifier.height(24.dp))

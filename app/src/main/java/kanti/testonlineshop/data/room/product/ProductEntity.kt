@@ -10,7 +10,7 @@ data class ProductEntity(
     val subtitle: String = "Subtitle",
 
     val price: String = "",
-    val feedback: String = "",
+    val feedback: String? = "",
 
     val tags: String = "",
     val available: Int = 100,

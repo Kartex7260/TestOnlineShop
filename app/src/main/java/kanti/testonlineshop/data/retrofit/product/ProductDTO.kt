@@ -6,7 +6,7 @@ data class ProductDTO (
     var subtitle: String = "",
 
     var price: PriceDTO = PriceDTO(),
-    var feedback: FeedbackDTO = FeedbackDTO(),
+    var feedback: FeedbackDTO? = FeedbackDTO(),
 
     var tags: List<String> = listOf(),
 

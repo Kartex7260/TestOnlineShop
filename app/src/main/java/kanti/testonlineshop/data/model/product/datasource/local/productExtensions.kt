@@ -68,7 +68,8 @@ private fun Price.toPriceStg(): String {
     }
 }
 
-private fun String.toFeedback(): Feedback {
+private fun String?.toFeedback(): Feedback? {
+    if (this == null) return null
     val fragments = split(separator1)
     return Feedback(
         count = fragments[0].toInt(),
@@ -76,7 +77,8 @@ private fun String.toFeedback(): Feedback {
     )
 }
 
-private fun Feedback.toFeedbackStg(): String {
+private fun Feedback?.toFeedbackStg(): String? {
+    if (this == null) return null
     return buildString {
         append(count).append(separator1)
         append(rating)

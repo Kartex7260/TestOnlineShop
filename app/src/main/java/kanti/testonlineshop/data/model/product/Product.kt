@@ -12,7 +12,7 @@ data class Product(
     val subtitle: String = "Subtitle",
 
     val price: Price = Price(),
-    val feedback: Feedback = Feedback(),
+    val feedback: Feedback? = Feedback(),
 
     val tags: List<String> = listOf("Tag"),
     val available: Int = 100,

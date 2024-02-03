@@ -21,7 +21,7 @@ private fun ProductDTO.toProduct(): Product {
         subtitle = subtitle,
 
         price = price.toPrice(),
-        feedback = feedback.toFeedback(),
+        feedback = feedback?.toFeedback(),
 
         tags = tags,
         available = available,
@@ -42,7 +42,8 @@ private fun PriceDTO.toPrice(): Price {
     )
 }
 
-private fun FeedbackDTO.toFeedback(): Feedback {
+private fun FeedbackDTO?.toFeedback(): Feedback? {
+    if (this == null) return null
     return Feedback(
         count = count,
         rating = rating

@@ -11,7 +11,8 @@ enum class SortType(
 
     Rating(
         sortFunc = { product ->
-            product.feedback.rating
+            if (product.feedback != null) product.feedback.rating
+            else 0f
         },
         ascending = false
     ),

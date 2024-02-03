@@ -130,13 +130,15 @@ fun ProductCard(
         )
 
         // RATING
-        Spacer(modifier = Modifier.heightIn(4.dp))
-        RatingTag(
-            modifier = Modifier
-                .padding(start = 4.dp),
-            feedback = product.feedback,
-            normalColor = MaterialTheme.colors.textGrey
-        )
+        if (product.feedback != null) {
+            Spacer(modifier = Modifier.heightIn(4.dp))
+            RatingTag(
+                modifier = Modifier
+                    .padding(start = 4.dp),
+                feedback = product.feedback,
+                normalColor = MaterialTheme.colors.textGrey
+            )
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
