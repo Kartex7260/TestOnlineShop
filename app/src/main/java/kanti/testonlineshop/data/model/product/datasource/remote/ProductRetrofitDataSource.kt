@@ -2,6 +2,8 @@ package kanti.testonlineshop.data.model.product.datasource.remote
 
 import kanti.testonlineshop.data.model.product.Product
 import kanti.testonlineshop.data.retrofit.product.ProductService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ProductRetrofitDataSource @Inject constructor(
@@ -9,6 +11,8 @@ class ProductRetrofitDataSource @Inject constructor(
 ) : ProductRemoteDataSource {
 
     override suspend fun getProducts(): List<Product> {
-        return productService.getItems().toProductList()
+        return withContext(Dispatchers.IO) {
+            productService.getItems().toProductList()
+        }
     }
 }

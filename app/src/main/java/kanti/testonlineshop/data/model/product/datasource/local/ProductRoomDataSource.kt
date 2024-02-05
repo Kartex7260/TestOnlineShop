@@ -2,8 +2,11 @@ package kanti.testonlineshop.data.model.product.datasource.local
 
 import kanti.testonlineshop.data.model.product.Product
 import kanti.testonlineshop.data.room.product.ProductDao
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ProductRoomDataSource @Inject constructor(
@@ -13,19 +16,23 @@ class ProductRoomDataSource @Inject constructor(
     override val products: Flow<List<Product>>
         get() = productDao.getAllProducts().map {
             products -> products.map { it.toProduct() }
-        }
+        }.flowOn(Dispatchers.IO)
 
     override val favouriteProducts: Flow<List<Product>>
         get() = productDao.getAllFavouriteProducts().map {
             products -> products.map { it.toProduct() }
-        }
+        }.flowOn(Dispatchers.IO)
 
     override suspend fun getProduct(productId: String): Product? {
-        return productDao.getProduct(productId)?.toProduct()
+        return withContext(Dispatchers.IO) {
+            productDao.getProduct(productId)?.toProduct()
+        }
     }
 
     override suspend fun insert(products: List<Product>) {
-        productDao.insert(products.map { it.toProductEntity() })
+        withContext(Dispatchers.IO) {
+            productDao.insert(products.map { it.toProductEntity() })
+        }
     }
 
     override suspend fun deleteAll() {
