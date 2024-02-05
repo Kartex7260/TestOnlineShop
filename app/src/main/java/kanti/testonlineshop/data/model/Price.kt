@@ -1,8 +1,8 @@
 package kanti.testonlineshop.data.model
 
-import androidx.compose.runtime.Stable
+import androidx.compose.runtime.Immutable
 
-@Stable
+@Immutable
 data class Price(
     val price: String = "100",
     val discount: Int = 50,

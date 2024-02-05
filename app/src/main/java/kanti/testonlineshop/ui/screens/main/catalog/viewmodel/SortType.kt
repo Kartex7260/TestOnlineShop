@@ -1,9 +1,11 @@
 package kanti.testonlineshop.ui.screens.main.catalog.viewmodel
 
 import android.content.Context
+import androidx.compose.runtime.Immutable
 import kanti.testonlineshop.R
 import kanti.testonlineshop.data.model.product.Product
 
+@Immutable
 enum class SortType(
     val sortFunc: (Product) -> Float,
     val ascending: Boolean

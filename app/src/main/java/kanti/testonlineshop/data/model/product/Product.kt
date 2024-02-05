@@ -1,11 +1,11 @@
 package kanti.testonlineshop.data.model.product
 
-import androidx.compose.runtime.Stable
+import androidx.compose.runtime.Immutable
 import kanti.testonlineshop.data.model.Feedback
 import kanti.testonlineshop.data.model.Info
 import kanti.testonlineshop.data.model.Price
 
-@Stable
+@Immutable
 data class Product(
     val id: String = "id",
     val title: String = "Title",
